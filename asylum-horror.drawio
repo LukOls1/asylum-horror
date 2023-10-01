@@ -1,0 +1,37 @@
+<mxfile host="Electron" modified="2023-09-21T12:32:21.832Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="9rRW7kniDfjYRzNKZ5CI" version="21.7.5" type="device">
+  <diagram name="Strona-1" id="TP8o5G_nBMuIyZZCahte">
+    <mxGraphModel dx="1098" dy="988" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-1" value="Gracz nakierował na obiekt z interakcją" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-2" value="Wyświetlił sie UI z akcją i klawiszem do interakcji" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="343" y="200" width="114" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-4" value="Gracz nacisnął klawisz" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-5" value="Drzwi/szuflada otworzyły/zamknęły sie" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-6" value="Przedmiot trafił do ręki gracza" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="337" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-7" value="abstract class Interactable" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="120" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-8" value="+Interact()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="ykI0L86Hk80Nb0FYMfGD-7">
+          <mxGeometry y="26" width="140" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-11" value="Gracz używa przedmiotu na obiekcie" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-20" value="override Interact()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="337" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
