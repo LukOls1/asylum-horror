@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Crosshair : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI interactText;
     private IInteractable actualInteractable;
