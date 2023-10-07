@@ -5,21 +5,52 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
     private Animator animator;
-    private string actionInfoPositive = "Open";
-    private string actionInfoNegative = "Close";
+    private string actionInfo;
     private bool isClosed = true;
+    public bool isLocked = false;
+
+    public DoorState doorState;
+    public enum DoorState 
+    { 
+        Opened,
+        Closed,
+        Locked
+    }
+
     private void Awake()
     {
+        doorState = DoorState.Closed;
         animator = gameObject.GetComponent<Animator>();
     }
     public void Interact()
     {
-        animator.SetTrigger("use");
-        isClosed = !isClosed;
-        animator.SetBool("isClosed", isClosed);
+        if(doorState != DoorState.Locked)
+        {
+            animator.SetTrigger("use");
+            isClosed = !isClosed;
+            animator.SetBool("isClosed", isClosed);
+        }
+        else
+        {
+            return;
+        }
     }
     public string ShowActionInfo()
     {
-        return !isClosed ? actionInfoNegative : actionInfoPositive;
+        switch (doorState)
+        {
+            case DoorState.Opened:
+                actionInfo = "Close";
+                break;
+            case DoorState.Closed:
+                actionInfo = "Open";
+                break;
+            case DoorState.Locked:
+                actionInfo = "Locked";
+                break;
+            default:
+                break;
+        }
+        return actionInfo;
     }
 }

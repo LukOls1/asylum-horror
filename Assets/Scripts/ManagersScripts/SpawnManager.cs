@@ -5,24 +5,37 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> itemsList;
-    [SerializeField] private List<Transform> spawnPointList;
-
-    private void Start()
+    [SerializeField] private GameObject spawnItemPointsContainer;
+    [SerializeField] private RandomizeItem randomizeItem;
+    private List<Transform> spawnItemPointList;
+    public List<Transform> SpawnItemPointList
     {
+        get         { return spawnItemPointList; }
+        private set { spawnItemPointList = value; }
+    }
+
+    private void Awake()
+    {
+        spawnItemPointList = new List<Transform>();
+        GetSpawnPointsList();
         RandomItemsSpawn();
+    }
+
+    private List<Transform> GetSpawnPointsList()
+    {
+        foreach (Transform point in spawnItemPointsContainer.transform)
+        {
+            spawnItemPointList.Add(point);
+        }
+        return SpawnItemPointList;
     }
 
     private void RandomItemsSpawn()
     {
-        List<Transform> points = spawnPointList;
-        int listCount = points.Count;
-        int randomIndex;
-        foreach (GameObject item in itemsList)
+        List<Transform> randomList = randomizeItem.GenerateSpawnPoints(itemsList.Count, spawnItemPointList);
+        for (int i = 0; i < randomList.Count; i++)
         {
-            randomIndex = Random.Range(0, listCount);
-            Instantiate(item, points[randomIndex].position, item.transform.rotation);
-            points.RemoveAt(randomIndex);
-            listCount--;
+            Instantiate(itemsList[i], randomList[i].position, itemsList[i].transform.rotation);
         }
     }
 }
