@@ -13,10 +13,10 @@ TagManager:
   - Water
   - UI
   - Interactable
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - Ghost
+  - Wall
   - 
   - 
   - 
