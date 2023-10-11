@@ -13,7 +13,7 @@ public class GhostStateMachine : MonoBehaviour
 
     private void Start()
     {
-        currentState = RoamState;
+        currentState = SearchState;
         currentState.OnEnter(this);
     }
     private void Update()
