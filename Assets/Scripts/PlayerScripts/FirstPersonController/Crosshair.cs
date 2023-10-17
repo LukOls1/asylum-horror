@@ -6,10 +6,17 @@ using TMPro;
 public class Crosshair : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI interactText;
+    [SerializeField] private Camera playerCamera;
     private IInteractable actualInteractable;
+
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
+       
         if (Input.GetKeyDown(KeyCode.E) && actualInteractable != null)
         {
             Debug.Log("used");

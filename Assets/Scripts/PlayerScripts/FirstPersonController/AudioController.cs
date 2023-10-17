@@ -17,18 +17,21 @@ public class AudioController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(playerMainScript.joint.localPosition);
-        if (playerMainScript.joint.localPosition.y <= (originalJointPosition.y - playerMainScript.bobAmount.y + stepTrigger) && stepDone == false)
+        AplyFootstepsSound();
+    }
+    private void AplyFootstepsSound()
+    {
+        if (playerMainScript.joint.localPosition.y <= (originalJointPosition.y - playerMainScript.bobAmount.y + stepTrigger) && !playerMainScript.isCrouched && stepDone == false)
         {
-            PlayStepSound();
+            PlayFootStepSound();
             stepDone = true;
         }
-        else if (playerMainScript.joint.localPosition == originalJointPosition && stepDone == true)
+        else if (playerMainScript.joint.localPosition.y > originalJointPosition.y && stepDone == true)
         {
             stepDone = false;
         }
     }
-    private void PlayStepSound()
+    private void PlayFootStepSound()
     {
         stepSound.Play();
     }

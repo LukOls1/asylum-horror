@@ -110,9 +110,10 @@ public class FirstPersonController : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
     public float crouchHeight = .75f;
     public float speedReduction = .5f;
+    public bool isCrouched = false;
 
     // Internal Variables
-    private bool isCrouched = false;
+
     private Vector3 originalScale;
 
     #endregion
@@ -154,6 +155,16 @@ public class FirstPersonController : MonoBehaviour
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if(crosshair)
+        {
+            crosshairObject.sprite = crosshairImage;
+            crosshairObject.color = crosshairColor;
+        }
+        else
+        {
+            crosshairObject.gameObject.SetActive(false);
         }
     }
 
@@ -379,11 +390,6 @@ public class FirstPersonController : MonoBehaviour
             {
                 isSprinting = false;
 
-                //if (hideBarWhenFull && sprintRemaining == sprintDuration)
-                //{
-                //    sprintBarCG.alpha -= 3 * Time.deltaTime;
-                //}
-
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
 
                 // Apply a force that attempts to reach our target velocity
@@ -530,6 +536,23 @@ public class FirstPersonController : MonoBehaviour
         GUI.enabled = true;
 
         fpc.lockCursor = EditorGUILayout.ToggleLeft(new GUIContent("Lock and Hide Cursor", "Turns off the cursor visibility and locks it to the middle of the screen."), fpc.lockCursor);
+
+        fpc.crosshair = EditorGUILayout.ToggleLeft(new GUIContent("Auto Crosshair", "Determines if the basic crosshair will be turned on, and sets is to the center of the screen."), fpc.crosshair);
+
+        // Only displays crosshair options if crosshair is enabled
+        if(fpc.crosshair) 
+        { 
+            EditorGUI.indentLevel++; 
+            EditorGUILayout.BeginHorizontal(); 
+            EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Image", "Sprite to use as the crosshair.")); 
+            fpc.crosshairImage = (Sprite)EditorGUILayout.ObjectField(fpc.crosshairImage, typeof(Sprite), false);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            fpc.crosshairColor = EditorGUILayout.ColorField(new GUIContent("Crosshair Color", "Determines the color of the crosshair."), fpc.crosshairColor);
+            EditorGUILayout.EndHorizontal();
+            EditorGUI.indentLevel--; 
+        }
 
         EditorGUILayout.Space();
 
