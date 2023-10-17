@@ -30,5 +30,9 @@ public class Keypad : MonoBehaviour
         {
             controlledDoor.doorState = Door.DoorState.Closed;
         }
+        else
+        {
+            typedCode = "";
+        }
     }
 }
