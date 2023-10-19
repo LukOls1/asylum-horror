@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController : MonoBehaviour
+public class AudioController : MonoBehaviour,ISoundMaker
 {
     [SerializeField] AudioSource stepSound;
     [SerializeField] FirstPersonController playerMainScript;
     [SerializeField] private float stepTrigger = 0.01f;
     private Vector3 originalJointPosition;
     private bool stepDone = false;
+
 
     private void Start()
     {
@@ -23,16 +24,23 @@ public class AudioController : MonoBehaviour
     {
         if (playerMainScript.joint.localPosition.y <= (originalJointPosition.y - playerMainScript.bobAmount.y + stepTrigger) && !playerMainScript.isCrouched && stepDone == false)
         {
-            PlayFootStepSound();
+            MakeSound();
             stepDone = true;
         }
         else if (playerMainScript.joint.localPosition.y > originalJointPosition.y && stepDone == true)
         {
+            SoundOver();
             stepDone = false;
         }
     }
-    private void PlayFootStepSound()
+    public void MakeSound()
     {
         stepSound.Play();
+        GameEvents.current.SoundTrigger();
     }
+    public void SoundOver()
+    {
+
+    }
+
 }

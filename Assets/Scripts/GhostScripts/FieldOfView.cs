@@ -7,10 +7,11 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] public float radius;
     [SerializeField] public float angle;
 
-    private GameObject player;
+    public Transform ghostHead;
+    public GameObject player;
 
-    private LayerMask targetMask;
-    private LayerMask obstructionMask;
+    [SerializeField] private LayerMask targetMask;
+    [SerializeField] private LayerMask obstructionMask;
 
     public bool playerSeen = false;
 
@@ -33,16 +34,16 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        Collider[] rangeCheck = Physics.OverlapSphere(transform.position, radius);
+        Collider[] rangeCheck = Physics.OverlapSphere(ghostHead.position, radius, targetMask);
 
         if (rangeCheck.Length != 0)
         {
             Transform target = rangeCheck[0].transform;
-            Vector3 direction = (target.position - transform.position).normalized;
+            Vector3 direction = (target.position - ghostHead.position).normalized;
 
             if (Vector3.Angle(transform.forward, direction) < angle / 2)
             {
-                float distance = Vector3.Distance(transform.position, target.position);
+                float distance = Vector3.Distance(ghostHead.position, target.position);
                 if (!Physics.Raycast(transform.position, direction, distance, obstructionMask))
                 {
                     playerSeen = true;
