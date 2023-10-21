@@ -5,31 +5,44 @@ using UnityEngine.AI;
 
 public class GhostRoamState : GhostStateMachineBase
 {
-    private Transform destinationRoamPoint;
     private NavMeshAgent ghostNavMeshAgent;
+    private HearRange hearRange;
+
+    private Transform destinationRoamPoint;
     private List<Transform> roamPoints;
     private Animator ghostAnimator;
     private int randomRoampointIndex = -1;
     private float roamDestinationDistance = 1f;
     private bool hasInicialized = false;
+
+    private float ghostSpeed = 1.2f;
     public override void OnEnter(GhostStateMachine ghost)
     {
-        if(hasInicialized == false)
+        Debug.Log("roam");
+        if (hasInicialized == false)
         {            
             ghostNavMeshAgent = ghost.GetComponent<NavMeshAgent>();
             ghostAnimator = ghost.GetComponent<Animator>();
+            hearRange = ghost.GetComponent<HearRange>();
             InicializePointsList();
             hasInicialized = true;
         }
+        ghostNavMeshAgent.speed = ghostSpeed;
         destinationRoamPoint = ReturnRandomRoamPoint();
         ghostAnimator.SetBool("idle", false);
+        ghostAnimator.SetBool("walk", true);
+        ghostAnimator.SetBool("fastWalk", false);
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {
         ghostNavMeshAgent.destination = destinationRoamPoint.position;
-        if(Vector3.Distance(ghost.transform.position, destinationRoamPoint.position) <= roamDestinationDistance)
+        if (Vector3.Distance(ghost.transform.position, destinationRoamPoint.position) <= roamDestinationDistance && !hearRange.soundHeard)
         {
             ghost.ChangeState(ghost.SearchState);
+        }
+        else if(hearRange.soundHeard)
+        {
+            ghost.ChangeState(ghost.HearState);
         }
     }
     private void InicializePointsList()

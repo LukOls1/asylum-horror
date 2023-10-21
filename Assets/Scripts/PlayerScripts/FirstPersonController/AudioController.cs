@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController : MonoBehaviour,ISoundMaker
+public class AudioController : MonoBehaviour
 {
     [SerializeField] AudioSource stepSound;
     [SerializeField] FirstPersonController playerMainScript;
     [SerializeField] private float stepTrigger = 0.01f;
     private Vector3 originalJointPosition;
     private bool stepDone = false;
-
 
     private void Start()
     {
@@ -36,7 +35,7 @@ public class AudioController : MonoBehaviour,ISoundMaker
     public void MakeSound()
     {
         stepSound.Play();
-        GameEvents.current.SoundTrigger();
+        transform.GetComponent<EventSoundMaker>().SendSoundMakerTransform(transform);
     }
     public void SoundOver()
     {
