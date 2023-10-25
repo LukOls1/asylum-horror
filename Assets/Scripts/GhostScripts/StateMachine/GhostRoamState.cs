@@ -7,6 +7,7 @@ public class GhostRoamState : GhostStateMachineBase
 {
     private NavMeshAgent ghostNavMeshAgent;
     private HearRange hearRange;
+    private FieldOfView fieldOfView;
 
     private Transform destinationRoamPoint;
     private List<Transform> roamPoints;
@@ -24,6 +25,7 @@ public class GhostRoamState : GhostStateMachineBase
             ghostNavMeshAgent = ghost.GetComponent<NavMeshAgent>();
             ghostAnimator = ghost.GetComponent<Animator>();
             hearRange = ghost.GetComponent<HearRange>();
+            fieldOfView = ghost.GetComponent<FieldOfView>();
             InicializePointsList();
             hasInicialized = true;
         }
@@ -40,9 +42,13 @@ public class GhostRoamState : GhostStateMachineBase
         {
             ghost.ChangeState(ghost.SearchState);
         }
-        else if(hearRange.soundHeard)
+        else if(hearRange.soundHeard && !fieldOfView.playerSeen)
         {
             ghost.ChangeState(ghost.HearState);
+        }
+        else if (fieldOfView.playerSeen)
+        {
+            ghost.ChangeState(ghost.ChaseState);
         }
     }
     private void InicializePointsList()

@@ -13,23 +13,16 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstructionMask;
 
+    public Vector3 lastPlayerSeenPosition;
     public bool playerSeen = false;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine(FOVRoutine());
     }
-
-    private IEnumerator FOVRoutine()
+    private void Update()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
-
-        while(true)
-        {
-            yield return wait;
-            FieldOfViewCheck();
-        }
+        FieldOfViewCheck();
     }
 
     private void FieldOfViewCheck()
@@ -47,6 +40,7 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, direction, distance, obstructionMask))
                 {
                     playerSeen = true;
+                    lastPlayerSeenPosition = player.transform.position;
                 }
                 else playerSeen = false;
             }

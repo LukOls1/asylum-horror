@@ -8,6 +8,7 @@ public class GhostSearchState : GhostStateMachineBase
     private Animator ghostAnimator;
     private NavMeshAgent ghostNavMeshAgent;
     private HearRange hearRange;
+    private FieldOfView fieldOfView;
     private bool hasInicialized = false;
     private float elapsedTime;
     private int animationLength = 4;
@@ -19,24 +20,30 @@ public class GhostSearchState : GhostStateMachineBase
             ghostNavMeshAgent = ghost.GetComponent<NavMeshAgent>();
             ghostAnimator = ghost.GetComponent<Animator>();
             hearRange = ghost.GetComponent<HearRange>();
+            fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
         ghostAnimator.SetBool("idle", true);
         ghostAnimator.SetBool("walk", false);
+        ghostAnimator.SetBool("run", false);
         ghostAnimator.SetBool("fastWalk", false);
 
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {
         elapsedTime += Time.deltaTime;
-        if(elapsedTime >= animationLength && !hearRange.soundHeard)
+        if (elapsedTime >= animationLength && !hearRange.soundHeard && !fieldOfView.playerSeen)
         {
             elapsedTime = 0;
             ghost.ChangeState(ghost.RoamState);
         }
-        else if(hearRange.soundHeard)
+        else if (hearRange.soundHeard && !fieldOfView.playerSeen)
         {
             ghost.ChangeState(ghost.HearState);
+        }
+        else if (fieldOfView.playerSeen)
+        {
+            ghost.ChangeState(ghost.ChaseState);
         }
     }
     

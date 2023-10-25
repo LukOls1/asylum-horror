@@ -7,6 +7,7 @@ public class GhostHearState : GhostStateMachineBase
 {
     private NavMeshAgent ghostNavMeshAgent;
     private HearRange hearRange;
+    private FieldOfView fieldOfView;
 
     private Animator ghostAnimator;
     private bool hasInicialized = false;
@@ -22,10 +23,12 @@ public class GhostHearState : GhostStateMachineBase
             ghostNavMeshAgent = ghost.GetComponent<NavMeshAgent>();
             ghostAnimator = ghost.GetComponent<Animator>();
             hearRange = ghost.GetComponent<HearRange>();
+            fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
         ghostAnimator.SetBool("idle", false);
         ghostAnimator.SetBool("walk", false);
+        ghostAnimator.SetBool("run", false);
         ghostAnimator.SetBool("fastWalk", true);
         ghostNavMeshAgent.speed = ghostSpeed;
         soundDestination = hearRange.lastHearedSoundPosition;
@@ -33,7 +36,6 @@ public class GhostHearState : GhostStateMachineBase
     public override void OnUpdate(GhostStateMachine ghost)
     {
         ghostNavMeshAgent.destination = soundDestination;
-        Debug.Log(Vector3.Distance(ghost.transform.position, soundDestination).ToString());
         if (Vector3.Distance(ghost.transform.position, soundDestination) <= hearDestinationDistance)
         {           
             hearRange.soundHeard = false;
@@ -42,6 +44,10 @@ public class GhostHearState : GhostStateMachineBase
         else if (hearRange.lastHearedSoundPosition != soundDestination)
         {
             soundDestination = hearRange.lastHearedSoundPosition;
+        }
+        else if (fieldOfView.playerSeen)
+        {
+            ghost.ChangeState(ghost.ChaseState);
         }
     }
 }

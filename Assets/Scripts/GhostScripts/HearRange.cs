@@ -9,6 +9,8 @@ public class HearRange : MonoBehaviour
     public Vector3 lastHearedSoundPosition;
     public bool soundHeard = false;
 
+    private float soundResetDistance = 2f;
+
     private void Start()
     {
         EventSoundMaker[] soundMakers = FindObjectsOfType<EventSoundMaker>();
@@ -17,12 +19,23 @@ public class HearRange : MonoBehaviour
             soundMaker.SoundMakerTransform += CheckSoundInRange;
         }
     }
+    private void Update()
+    {
+        ResetSoundHeard();
+    }
     private void CheckSoundInRange(Transform soundMakerTransform)
     {
       if(Vector3.Distance(transform.position, soundMakerTransform.position) <= radius)
         {
             lastHearedSoundPosition = soundMakerTransform.position;
             soundHeard = true;
+        }
+    }
+    private void ResetSoundHeard()
+    {
+        if(Vector3.Distance(transform.position, lastHearedSoundPosition) <= soundResetDistance) 
+        {
+            soundHeard = false;
         }
     }
 }
