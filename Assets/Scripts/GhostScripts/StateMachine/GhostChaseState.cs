@@ -12,7 +12,7 @@ public class GhostChaseState : GhostStateMachineBase
     private Animator ghostAnimator;
     private bool hasInicialized = false;
 
-    private float ghostSpeed = 3f;
+    private float ghostSpeed = 4f;
     private float sawDestinationDistance = 1.3f;
     public override void OnEnter(GhostStateMachine ghost)
     {
@@ -25,10 +25,6 @@ public class GhostChaseState : GhostStateMachineBase
             fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
-        ghostAnimator.SetBool("idle", false);
-        ghostAnimator.SetBool("walk", false);
-        ghostAnimator.SetBool("fastWalk", false);
-        ghostAnimator.SetBool("run", true);
         ghostNavMeshAgent.speed = ghostSpeed;
     }
     public override void OnUpdate(GhostStateMachine ghost)

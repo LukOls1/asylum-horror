@@ -31,9 +31,6 @@ public class GhostRoamState : GhostStateMachineBase
         }
         ghostNavMeshAgent.speed = ghostSpeed;
         destinationRoamPoint = ReturnRandomRoamPoint();
-        ghostAnimator.SetBool("idle", false);
-        ghostAnimator.SetBool("walk", true);
-        ghostAnimator.SetBool("fastWalk", false);
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {

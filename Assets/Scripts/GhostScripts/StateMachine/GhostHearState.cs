@@ -26,10 +26,6 @@ public class GhostHearState : GhostStateMachineBase
             fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
-        ghostAnimator.SetBool("idle", false);
-        ghostAnimator.SetBool("walk", false);
-        ghostAnimator.SetBool("run", false);
-        ghostAnimator.SetBool("fastWalk", true);
         ghostNavMeshAgent.speed = ghostSpeed;
         soundDestination = hearRange.lastHearedSoundPosition;
     }

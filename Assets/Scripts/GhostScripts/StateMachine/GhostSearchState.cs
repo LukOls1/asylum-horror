@@ -23,10 +23,8 @@ public class GhostSearchState : GhostStateMachineBase
             fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
+        ghostNavMeshAgent.speed = 0;
         ghostAnimator.SetBool("idle", true);
-        ghostAnimator.SetBool("walk", false);
-        ghostAnimator.SetBool("run", false);
-        ghostAnimator.SetBool("fastWalk", false);
 
     }
     public override void OnUpdate(GhostStateMachine ghost)
@@ -35,6 +33,7 @@ public class GhostSearchState : GhostStateMachineBase
         if (elapsedTime >= animationLength && !hearRange.soundHeard && !fieldOfView.playerSeen)
         {
             elapsedTime = 0;
+            ghostAnimator.SetBool("idle", false);
             ghost.ChangeState(ghost.RoamState);
         }
         else if (hearRange.soundHeard && !fieldOfView.playerSeen)
