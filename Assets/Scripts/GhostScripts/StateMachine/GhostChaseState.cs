@@ -30,21 +30,21 @@ public class GhostChaseState : GhostStateMachineBase
     public override void OnUpdate(GhostStateMachine ghost)
     {
          
-        if(fieldOfView.playerSeen)
+        if(fieldOfView.PlayerSeen)
         {
-            ghostNavMeshAgent.destination = fieldOfView.player.transform.position;
+            ghostNavMeshAgent.destination = fieldOfView.Player.transform.position;
         }
-        else if(!fieldOfView.playerSeen && Vector3.Distance(ghost.transform.position, fieldOfView.lastPlayerSeenPosition) > sawDestinationDistance)
+        else if(!fieldOfView.PlayerSeen && Vector3.Distance(ghost.transform.position, fieldOfView.LastPlayerSeenPosition) > sawDestinationDistance)
         {
-            ghostNavMeshAgent.destination = fieldOfView.lastPlayerSeenPosition;
+            ghostNavMeshAgent.destination = fieldOfView.LastPlayerSeenPosition;
         }
-        else if(Vector3.Distance(ghost.transform.position, fieldOfView.lastPlayerSeenPosition) <= sawDestinationDistance && !hearRange.soundHeard)
+        else if(Vector3.Distance(ghost.transform.position, fieldOfView.LastPlayerSeenPosition) <= sawDestinationDistance && !hearRange.SoundHeard)
         {
             ghost.ChangeState(ghost.SearchState);
         }
-        else if(Vector3.Distance(ghost.transform.position, fieldOfView.lastPlayerSeenPosition) <= sawDestinationDistance && hearRange.soundHeard)
+        else if(Vector3.Distance(ghost.transform.position, fieldOfView.LastPlayerSeenPosition) <= sawDestinationDistance && hearRange.SoundHeard)
         {
-            fieldOfView.lastPlayerSeenPosition = hearRange.lastHearedSoundPosition;
+            fieldOfView.LastPlayerSeenPosition = hearRange.LastHearedSoundPosition;
         }     
     }
 }

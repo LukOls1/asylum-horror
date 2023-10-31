@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    [SerializeField] public float radius;
-    [SerializeField] public float angle;
+    public float Radius;
+    public float Angle;
 
-    public Transform ghostHead;
-    public GameObject player;
+    public Transform GhostHead;
+    public GameObject Player;
 
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstructionMask;
 
-    public Vector3 lastPlayerSeenPosition;
-    public bool playerSeen = false;
+    public Vector3 LastPlayerSeenPosition;
+    public bool PlayerSeen = false;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
@@ -27,25 +27,25 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        Collider[] rangeCheck = Physics.OverlapSphere(ghostHead.position, radius, targetMask);
+        Collider[] rangeCheck = Physics.OverlapSphere(GhostHead.position, Radius, targetMask);
 
         if (rangeCheck.Length != 0)
         {
             Transform target = rangeCheck[0].transform;
-            Vector3 direction = (target.position - ghostHead.position).normalized;
+            Vector3 direction = (target.position - GhostHead.position).normalized;
 
-            if (Vector3.Angle(transform.forward, direction) < angle / 2)
+            if (Vector3.Angle(transform.forward, direction) < Angle / 2)
             {
-                float distance = Vector3.Distance(ghostHead.position, target.position);
+                float distance = Vector3.Distance(GhostHead.position, target.position);
                 if (!Physics.Raycast(transform.position, direction, distance, obstructionMask))
                 {
-                    playerSeen = true;
-                    lastPlayerSeenPosition = player.transform.position;
+                    PlayerSeen = true;
+                    LastPlayerSeenPosition = Player.transform.position;
                 }
-                else playerSeen = false;
+                else PlayerSeen = false;
             }
         }
-        else if (playerSeen) playerSeen = false;
+        else if (PlayerSeen) PlayerSeen = false;
     }
 
 

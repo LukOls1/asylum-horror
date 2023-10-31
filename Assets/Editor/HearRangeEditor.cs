@@ -10,6 +10,6 @@ public class HearRangeEditor : Editor
     {
         HearRange hr = (HearRange)target;
         Handles.color = Color.blue;
-        Handles.DrawWireArc(hr.transform.position ,Vector3.up, Vector3.forward, 360, hr.radius);
+        Handles.DrawWireArc(hr.transform.position ,Vector3.up, Vector3.forward, 360, hr.Radius);
     }
 }

@@ -7,7 +7,7 @@ public class Door : MonoBehaviour, IInteractable
     private Animator animator;
     private string actionInfo;
     private bool isClosed = true;
-    public bool isLocked = false;
+    public bool IsLocked = false;
 
     public DoorState doorState;
     public enum DoorState 

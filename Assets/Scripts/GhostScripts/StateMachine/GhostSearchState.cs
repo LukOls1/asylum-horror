@@ -30,17 +30,17 @@ public class GhostSearchState : GhostStateMachineBase
     public override void OnUpdate(GhostStateMachine ghost)
     {
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= animationLength && !hearRange.soundHeard && !fieldOfView.playerSeen)
+        if (elapsedTime >= animationLength && !hearRange.SoundHeard && !fieldOfView.PlayerSeen)
         {
             elapsedTime = 0;
             ghostAnimator.SetBool("idle", false);
             ghost.ChangeState(ghost.RoamState);
         }
-        else if (hearRange.soundHeard && !fieldOfView.playerSeen)
+        else if (hearRange.SoundHeard && !fieldOfView.PlayerSeen)
         {
             ghost.ChangeState(ghost.HearState);
         }
-        else if (fieldOfView.playerSeen)
+        else if (fieldOfView.PlayerSeen)
         {
             ghost.ChangeState(ghost.ChaseState);
         }

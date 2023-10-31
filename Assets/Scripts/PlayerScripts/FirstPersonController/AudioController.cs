@@ -21,7 +21,7 @@ public class AudioController : MonoBehaviour
     }
     private void AplyFootstepsSound()
     {
-        if (playerMainScript.joint.localPosition.y <= (originalJointPosition.y - playerMainScript.bobAmount.y + stepTrigger) && !playerMainScript.isCrouched && stepDone == false)
+        if (playerMainScript.joint.localPosition.y <= (originalJointPosition.y - playerMainScript.bobAmount.y + stepTrigger) && !playerMainScript.IsCrouched && stepDone == false)
         {
             MakeSound();
             stepDone = true;

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class HearRange : MonoBehaviour
 {
-    public float radius = 10f;
-    public Vector3 lastHearedSoundPosition;
-    public bool soundHeard = false;
+    public float Radius = 10f;
+    public Vector3 LastHearedSoundPosition;
+    public bool SoundHeard = false;
 
     private float soundResetDistance = 2f;
 
@@ -25,17 +25,17 @@ public class HearRange : MonoBehaviour
     }
     private void CheckSoundInRange(Transform soundMakerTransform)
     {
-      if(Vector3.Distance(transform.position, soundMakerTransform.position) <= radius)
+      if(Vector3.Distance(transform.position, soundMakerTransform.position) <= Radius)
         {
-            lastHearedSoundPosition = soundMakerTransform.position;
-            soundHeard = true;
+            LastHearedSoundPosition = soundMakerTransform.position;
+            SoundHeard = true;
         }
     }
     private void ResetSoundHeard()
     {
-        if(Vector3.Distance(transform.position, lastHearedSoundPosition) <= soundResetDistance) 
+        if(Vector3.Distance(transform.position, LastHearedSoundPosition) <= soundResetDistance) 
         {
-            soundHeard = false;
+            SoundHeard = false;
         }
     }
 }

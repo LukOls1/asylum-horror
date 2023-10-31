@@ -11,19 +11,19 @@ public class FieldOfViewEditor : Editor
     {
         FieldOfView fov = (FieldOfView)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.ghostHead.position, Vector3.up, Vector3.forward, 360, fov.radius);
+        Handles.DrawWireArc(fov.GhostHead.position, Vector3.up, Vector3.forward, 360, fov.Radius);
 
-        Vector3 viewAngle01 = DirectionFromAngle(fov.ghostHead.eulerAngles.y, -fov.angle / 2);
-        Vector3 viewAngle02 = DirectionFromAngle(fov.ghostHead.eulerAngles.y, fov.angle / 2);
+        Vector3 viewAngle01 = DirectionFromAngle(fov.GhostHead.eulerAngles.y, -fov.Angle / 2);
+        Vector3 viewAngle02 = DirectionFromAngle(fov.GhostHead.eulerAngles.y, fov.Angle / 2);
 
         Handles.color = Color.red;
-        Handles.DrawLine(fov.ghostHead.position, fov.ghostHead.position + viewAngle01 * fov.radius);
-        Handles.DrawLine(fov.ghostHead.position, fov.ghostHead.position + viewAngle02 * fov.radius);
+        Handles.DrawLine(fov.GhostHead.position, fov.GhostHead.position + viewAngle01 * fov.Radius);
+        Handles.DrawLine(fov.GhostHead.position, fov.GhostHead.position + viewAngle02 * fov.Radius);
 
-        if(fov.playerSeen)
+        if(fov.PlayerSeen)
         {
             Handles.color = Color.green;
-            Handles.DrawLine(fov.ghostHead.position, fov.player.transform.position);
+            Handles.DrawLine(fov.GhostHead.position, fov.Player.transform.position);
         }
     }
 

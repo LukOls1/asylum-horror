@@ -27,21 +27,21 @@ public class GhostHearState : GhostStateMachineBase
             hasInicialized = true;
         }
         ghostNavMeshAgent.speed = ghostSpeed;
-        soundDestination = hearRange.lastHearedSoundPosition;
+        soundDestination = hearRange.LastHearedSoundPosition;
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {
         ghostNavMeshAgent.destination = soundDestination;
         if (Vector3.Distance(ghost.transform.position, soundDestination) <= hearDestinationDistance)
         {           
-            hearRange.soundHeard = false;
+            hearRange.SoundHeard = false;
             ghost.ChangeState(ghost.SearchState);
         }
-        else if (hearRange.lastHearedSoundPosition != soundDestination)
+        else if (hearRange.LastHearedSoundPosition != soundDestination)
         {
-            soundDestination = hearRange.lastHearedSoundPosition;
+            soundDestination = hearRange.LastHearedSoundPosition;
         }
-        else if (fieldOfView.playerSeen)
+        else if (fieldOfView.PlayerSeen)
         {
             ghost.ChangeState(ghost.ChaseState);
         }

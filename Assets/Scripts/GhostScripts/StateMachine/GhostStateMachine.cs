@@ -9,21 +9,21 @@ public class GhostStateMachine : MonoBehaviour
     public GhostSearchState SearchState = new GhostSearchState();
     public GhostChaseState ChaseState = new GhostChaseState();
 
-    public GhostStateMachineBase currentState;
+    public GhostStateMachineBase CurrentState;
 
     private void Start()
     {
-        currentState = SearchState;
-        currentState.OnEnter(this);
+        CurrentState = SearchState;
+        CurrentState.OnEnter(this);
     }
     private void Update()
     {
-        currentState.OnUpdate(this);
+        CurrentState.OnUpdate(this);
     }
 
     public void ChangeState(GhostStateMachineBase state)
     {
-        currentState = state;
-        currentState.OnEnter(this);
+        CurrentState = state;
+        CurrentState.OnEnter(this);
     }
 }
