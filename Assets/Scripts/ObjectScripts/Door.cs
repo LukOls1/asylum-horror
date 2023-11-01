@@ -29,10 +29,11 @@ public class Door : MonoBehaviour, IInteractable
             animator.SetTrigger("use");
             isClosed = !isClosed;
             animator.SetBool("isClosed", isClosed);
-        }
-        else
-        {
-            return;
+            if (doorState == DoorState.Closed)
+            {
+                doorState = DoorState.Opened;
+            }
+            else doorState = DoorState.Closed;
         }
     }
     public string ShowActionInfo()

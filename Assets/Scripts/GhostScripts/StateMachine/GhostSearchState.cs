@@ -12,6 +12,7 @@ public class GhostSearchState : GhostStateMachineBase
     private bool hasInicialized = false;
     private float elapsedTime;
     private int animationLength = 4;
+    private float ghostSpeed = 0f;
     public override void OnEnter(GhostStateMachine ghost)
     {
         Debug.Log("search");
@@ -23,7 +24,7 @@ public class GhostSearchState : GhostStateMachineBase
             fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
-        ghostNavMeshAgent.speed = 0;
+        ghostNavMeshAgent.speed = ghostSpeed;
         ghostAnimator.SetBool("idle", true);
 
     }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AnimationController : StateMachineBehaviour
 {
-    [SerializeField] private NavMeshAgent ghostNavMeshAgent;
+    private NavMeshAgent ghostNavMeshAgent;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

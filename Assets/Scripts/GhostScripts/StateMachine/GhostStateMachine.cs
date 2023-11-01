@@ -8,6 +8,7 @@ public class GhostStateMachine : MonoBehaviour
     public GhostHearState HearState = new GhostHearState();
     public GhostSearchState SearchState = new GhostSearchState();
     public GhostChaseState ChaseState = new GhostChaseState();
+    public GhostGameOverState GameOverState = new GhostGameOverState();
 
     public GhostStateMachineBase CurrentState;
 
