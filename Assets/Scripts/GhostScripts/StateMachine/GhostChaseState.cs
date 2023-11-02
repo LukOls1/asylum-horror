@@ -9,6 +9,7 @@ public class GhostChaseState : GhostStateMachineBase
     private FieldOfView fieldOfView;
     private HearRange hearRange;
     private InteractRange interactRange;
+    private Transform playerTransform;
 
     private bool hasInicialized = false;
 
@@ -26,6 +27,7 @@ public class GhostChaseState : GhostStateMachineBase
             fieldOfView = ghost.GetComponent<FieldOfView>();
             hearRange = ghost.GetComponent<HearRange>();
             interactRange = ghost.GetComponent<InteractRange>();
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
                        
             hasInicialized = true;
         }
@@ -40,7 +42,7 @@ public class GhostChaseState : GhostStateMachineBase
         if (fieldOfView.PlayerSeen && !interactRange.PlayerCought)
         {
             Debug.Log("Chase player when he is on sight");
-            ghostNavMeshAgent.destination = destinationPosition;
+            ghostNavMeshAgent.destination = playerTransform.position;
         }
         // Kill player
         else if(fieldOfView.PlayerSeen && interactRange.PlayerCought)

@@ -15,7 +15,6 @@ public class InteractRange : MonoBehaviour
         }
         else if(other.CompareTag("Player"))
         {
-            Debug.Log("player");
             PlayerCought = true;
             killCamera.SetActive(true);
         }

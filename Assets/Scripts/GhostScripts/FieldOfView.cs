@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour
             if (Vector3.Angle(transform.forward, direction) < Angle / 2)
             {
                 float distance = Vector3.Distance(GhostHead.position, target.position);
-                if (!Physics.Raycast(transform.position, direction, distance, obstructionMask))
+                if (!Physics.Raycast(GhostHead.position, direction, distance, obstructionMask))
                 {
                     PlayerSeen = true;
                     LastPlayerSeenPosition = Player.transform.position;

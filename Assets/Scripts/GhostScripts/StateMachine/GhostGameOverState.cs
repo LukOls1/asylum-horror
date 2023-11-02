@@ -24,6 +24,7 @@ public class GhostGameOverState : GhostStateMachineBase
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {
+        GameManager.Instance.UpdateGameState(GameManager.GameStates.GameOver);
         ghostAnimator.SetBool("kill", true);
     }
 }
