@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: Notes Data
   m_EditorClassIdentifier: 
   noteList:
-  - {fileID: 0}
+  - Id: 1
+    Content: fawefadafsefawefsdaefa
+    isActive: 0
+  - Id: 2
+    Content: kapricioza doskonala
+    isActive: 0

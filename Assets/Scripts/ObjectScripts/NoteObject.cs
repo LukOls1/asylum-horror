@@ -1,27 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteObject : MonoBehaviour,IInteractable
+public class NoteObject: MonoBehaviour, IInteractable
 {
 
-    private string actionInfo = "Note";
-    [SerializeField] private string noteID = "";
+    [SerializeField] private string actionInfo = "Note";
+    [SerializeField] private string noteID;
 
-    public delegate void AddNoteHandler(string ID);
-    public event AddNoteHandler AddNoteEvent;
+    //[SerializeField] private JournalController journalController;
+    //[SerializeField] private NoteData noteData;
+
+    public static event Action<string> PassID;
+
+    private void Awake()
+    {
+        //jesli obiekt note nie zawiara sie na liscie, to wyjeb loga
+    }
 
     public void Interact()
     {
-        SendNoteID(noteID);
+        //journalController.HandleNote(noteID);
+        PassID?.Invoke(noteID);
         Destroy(gameObject);
+        
     }
     public string ShowActionInfo()
     {
         return actionInfo;
     }
-    private void SendNoteID(string ID)
-    {
-        AddNoteEvent(ID);
-    }
+    //funkcja pokazuj¹ca notatke do przeczytania po podniesieniu 
 }

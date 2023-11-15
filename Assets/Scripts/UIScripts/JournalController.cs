@@ -2,17 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class JournalController : MonoBehaviour
 {
     [SerializeField] private GameObject journal;
+
+    [SerializeField] private NoteData notesData;
+    [SerializeField] private RectTransform notesButtonsContainer;
+    [SerializeField] private Button noteUiPrefab;
+    [SerializeField] private TextMeshProUGUI journalNoteContent;
+
     [SerializeField] private FirstPersonController playerController;
 
     private bool journalDisabled = false;
 
-    private void Start()
+    private void Awake()
     {
-        SubscribeToNotesEvents();
+        SubscribeNoteEvents();
     }
     private void Update()
     {
@@ -31,25 +39,20 @@ public class JournalController : MonoBehaviour
             journalDisabled = !journalDisabled;
         }
     }
-    private void SubscribeToNotesEvents()
+    private void SubscribeNoteEvents()
     {
-        NoteObject[] notes = FindObjectsOfType<NoteObject>();
-        foreach (NoteObject note in notes)
+        NoteObject.PassID += HandleNote;
+    }
+    public void HandleNote(string id)
+    {
+        int noteIndex = notesData.noteList.FindIndex(note => note.Id == id);
+        if (noteIndex != -1)
         {
-            note.AddNoteEvent += HandleNote;
+            Button noteButton = Instantiate(noteUiPrefab, notesButtonsContainer);
+            NoteButton noteButtonScript = noteButton.GetComponent<NoteButton>();
+            noteButtonScript.note = notesData.noteList[noteIndex];
+            noteButtonScript.journalNoteContent = journalNoteContent;
         }
-    }
-    private void HandleNote(string ID)
-    {
-        ShowNote(ID);
-        AddNoteToList(ID);
-    }
-    private void AddNoteToList(string ID)
-    {
-
-    }
-    private void ShowNote(string ID)
-    {
-
+        else throw new ArgumentException("This note is not on Notes Data list", nameof(noteIndex));
     }
 }
