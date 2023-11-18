@@ -148,6 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   journalNoteContent: {fileID: 0}
+  note:
+    Id: 
+    header: 
+    Content: 
+  buttonText: {fileID: 2700790403204359773}
 --- !u!1 &5376660979567305971
 GameObject:
   m_ObjectHideFlags: 0

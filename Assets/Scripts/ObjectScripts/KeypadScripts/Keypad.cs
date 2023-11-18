@@ -6,14 +6,19 @@ public class Keypad : MonoBehaviour
 {
     private string validCode;
     private string typedCode;
+    [SerializeField] private NoteData noteData;
+    [SerializeField] private string noteID;
+
     [SerializeField] private int codeLength = 4;
     [SerializeField] private RandomizeCode randomizeCode;
+
     [SerializeField] private Door controlledDoor;
 
     private void Start()
     {
         controlledDoor.doorState = Door.DoorState.Locked;
         validCode = randomizeCode.GenerateCode(codeLength);
+        PassCodeToNote(validCode, noteID, noteData);
     }
 
     public void GetNumber(string number)
@@ -34,5 +39,10 @@ public class Keypad : MonoBehaviour
         {
             typedCode = "";
         }
+    }
+    private void PassCodeToNote(string code, string id, NoteData noteData)
+    {
+        int index = noteData.noteList.FindIndex(note => note.Id == id);
+        noteData.noteList[index].Content += code;
     }
 }

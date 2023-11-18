@@ -17,6 +17,19 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
+    #region Part1 Variables
+    [SerializeField] Collider partTwoTrigger;
+    private bool partTwoTriggerd = false;
+    #endregion
+    #region Part2 Variables
+    #endregion
+    #region Part3 Variables
+    #endregion
+    #region Part4 Variables
+    #endregion
+    #region Part5 Variables
+    #endregion
+
     private void Awake()
     {
         if(Instance == null)
@@ -44,9 +57,10 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameStates.Part1:
-                //PartOneMechanics();
+                PartOneMechanics();
                 break;
             case GameStates.Part2:
+                PartTwoMechanics();
                 break;
             case GameStates.GameOver:
                 GameOverMechanics();
@@ -60,6 +74,11 @@ public class GameManager : MonoBehaviour
     private void PartOneMechanics()
     {
         AudioManager.Instance.PlaySound(AudioManager.Instance.dialogueSource, AudioManager.Instance.dialogueOne);
+    }
+    private void PartTwoMechanics()
+    {
+        AudioManager.Instance.dialogueSource.Stop();
+        AudioManager.Instance.PlaySound(AudioManager.Instance.dialogueSource, AudioManager.Instance.dialogueTwo);
     }
     private void GameOverMechanics()
     {
