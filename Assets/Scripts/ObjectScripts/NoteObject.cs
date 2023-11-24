@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class NoteObject: MonoBehaviour, IInteractable
 {
-
     [SerializeField] private string actionInfo = "Note";
     [SerializeField] private string noteID;
 

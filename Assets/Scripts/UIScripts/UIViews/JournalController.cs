@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class JournalController : UIView
+public class JournalController : MonoBehaviour
 {
     [SerializeField] private GameObject journal;
     [SerializeField] private NotePopUp notePopUp;
@@ -22,6 +23,7 @@ public class JournalController : UIView
     private void Awake()
     {
         SubscribeNoteEvents();
+        notesData.ConvertFileToTxt();
     }
     private void Update()
     {
@@ -41,6 +43,7 @@ public class JournalController : UIView
         int noteIndex = notesData.noteList.FindIndex(note => note.Id == id);
         Note note = notesData.noteList[noteIndex];
         notePopUp.ShowPopUp(note);
+        notePopUp.noteChangeStateTo = note.ChangeStateOnThis;
 
         Button noteButton = Instantiate(noteUiPrefab, notesButtonsContainer);
         NoteButton noteButtonScript = noteButton.GetComponent<NoteButton>();
@@ -51,5 +54,5 @@ public class JournalController : UIView
         noteButtonScript.note = note;
         noteButtonScript.SetHeader();
         noteButtonScript.journalNoteContent = journalNoteContent;
-    }
+    }    
 }

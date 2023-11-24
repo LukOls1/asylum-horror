@@ -40,7 +40,6 @@ public class UIController : MonoBehaviour
     }
     private void HandleView(UIView view)
     {
-        LockScreen();
         SetThisCurrent(view);
         view.ControlView(currentViewActive);
     }
@@ -52,9 +51,15 @@ public class UIController : MonoBehaviour
         }
         else if( currentViewActive == null)
         {
+            LockScreen();
             currentViewActive = controlledView;
         }
-        else currentViewActive = null;  
+        else
+        {
+            LockScreen();
+            currentViewActive = null;
+        }
+           
     }
     private void LockScreen()
     {

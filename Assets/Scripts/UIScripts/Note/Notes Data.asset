@@ -13,10 +13,21 @@ MonoBehaviour:
   m_Name: Notes Data
   m_EditorClassIdentifier: 
   noteList:
-  - Id: 1
+  - Id: Part3
     header: There is no tape
-    Content: "Siema. NIe ma ta\u015Bmy bo schowa\u0142am se. Znajdz kartkje na kt\xF3rej
-      zapisa\u0142am kod do drzwi"
-  - Id: 2
+    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part3.txt
+    Content: "Good morning doctor. The tape is safe in your office. \r\nI also changed
+      a code to your door as you asked. \r\nIf you found this note, I'm sorry I didn't
+      give you the code in person. \r\nIf we never saw each other again, I hid it
+      behind a woman, I think you'll understand. \r\nRegards"
+    ChangeStateOnThis: 2
+  - Id: Part4
     header: Door Keycode
-    Content: 'no i to jest kod do drzwi: 436870717330'
+    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part4.txt
+    Content: 'CODE: 3827'
+    ChangeStateOnThis: 3
+  - Id: Part5
+    header: Door Keycode
+    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part5.txt
+    Content: "To jest druga notatka zawieraj\u0105ca kod do drzwi kt\xF3ry jest nast\u0119puj\u0105cy: "
+    ChangeStateOnThis: 0

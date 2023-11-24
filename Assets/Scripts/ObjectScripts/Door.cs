@@ -9,6 +9,8 @@ public class Door : MonoBehaviour, IInteractable
     private bool isClosed = true;
     public bool IsLocked = false;
 
+    [SerializeField] private GameManager.GameStates unlockOnState;
+
     public DoorState doorState;
     public enum DoorState 
     { 
@@ -19,7 +21,9 @@ public class Door : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        doorState = DoorState.Closed;
+        doorState = DoorState.Locked;
+        unlockOnState = GameManager.GameStates.Part2;
+        GameManager.OnGameStateChange += EventFlowControll;
         animator = gameObject.GetComponent<Animator>();
     }
     public void Interact()
@@ -53,5 +57,15 @@ public class Door : MonoBehaviour, IInteractable
                 break;
         }
         return actionInfo;
+    }
+    public void EventFlowControll(GameManager.GameStates state)
+    {
+        if(doorState == DoorState.Locked)
+        {
+            if (state == unlockOnState && !IsLocked)
+            {
+                doorState = DoorState.Closed;
+            }
+        }
     }
 }

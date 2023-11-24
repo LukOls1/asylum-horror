@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip dialogueOne;
     public AudioClip dialogueTwo;
+    public AudioClip dialogueThree;
+    public AudioClip dialogueFour;
+    public AudioClip dialogueFive;
 
 
     private void Awake()
