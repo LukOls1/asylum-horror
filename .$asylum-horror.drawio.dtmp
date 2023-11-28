@@ -1,0 +1,253 @@
+<mxfile host="Electron" modified="2023-11-28T10:44:48.128Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="h5uYQKp3c-9vgCi4tLZZ" version="21.7.5" type="device" pages="4">
+  <diagram name="Strona-1" id="TP8o5G_nBMuIyZZCahte">
+    <mxGraphModel dx="2058" dy="1188" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-1" value="Gracz nakierował na obiekt z interakcją" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-2" value="Wyświetlił sie UI z akcją i klawiszem do interakcji" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="343" y="200" width="114" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-4" value="Gracz nacisnął klawisz" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-5" value="Drzwi/szuflada otworzyły/zamknęły sie" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="160" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-6" value="Przedmiot trafił do ręki gracza" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="337" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-7" value="abstract class Interactable" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="120" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-8" value="+Interact()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="ykI0L86Hk80Nb0FYMfGD-7" vertex="1">
+          <mxGeometry y="26" width="140" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-11" value="Gracz używa przedmiotu na obiekcie" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykI0L86Hk80Nb0FYMfGD-20" value="override Interact()" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="337" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="0OKDK-pu0xQnRt36_iB_" name="Strona-2">
+    <mxGraphModel dx="1098" dy="988" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-1" target="r1hbutW0T2uxmNdTlxRA-44" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-1" value="Ghost spawnuje sie&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="370" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-2" target="r1hbutW0T2uxmNdTlxRA-26" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="370" y="230" />
+              <mxPoint x="370" y="240" />
+              <mxPoint x="360" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-2" target="r1hbutW0T2uxmNdTlxRA-37" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-2" value="Ghost idzie do punktu roam" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="370" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r1hbutW0T2uxmNdTlxRA-5" target="r1hbutW0T2uxmNdTlxRA-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-5" value="Ghost zauwazył gracza" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="259" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-6" target="r1hbutW0T2uxmNdTlxRA-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-6" value="Odliczanie czasu poscigu rozpoczelo sie" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="259" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-7" target="r1hbutW0T2uxmNdTlxRA-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-7" value="Ghost usłyszał gracza" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="469" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-8" target="r1hbutW0T2uxmNdTlxRA-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-8" value="Ghost poszedl sprawdzic lokacje hałasu" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="469" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-9" target="r1hbutW0T2uxmNdTlxRA-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-9" value="Ghost doszedl do lokacji" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="469" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-12" target="r1hbutW0T2uxmNdTlxRA-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="429" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-12" target="r1hbutW0T2uxmNdTlxRA-44" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="730" />
+              <mxPoint x="630" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-12" value="Ghost porozgladal sie przez chwile" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="469" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-14" target="r1hbutW0T2uxmNdTlxRA-18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-14" target="r1hbutW0T2uxmNdTlxRA-37" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="630" />
+              <mxPoint x="210" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-14" target="r1hbutW0T2uxmNdTlxRA-47" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-14" value="Ghost zaczal gonic gracza" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="259" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-18" target="r1hbutW0T2uxmNdTlxRA-50" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-18" value="Ghost dogonił gracza" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="120" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-26" target="r1hbutW0T2uxmNdTlxRA-44" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-26" value="Ghost doszedl do celu roamowania" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="210" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-37" target="r1hbutW0T2uxmNdTlxRA-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-37" target="r1hbutW0T2uxmNdTlxRA-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-37" value="Bodziec obecnosci gracza zadzialal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="370" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="r1hbutW0T2uxmNdTlxRA-44" target="r1hbutW0T2uxmNdTlxRA-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-44" value="Punkt Roam wylosował się" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="370" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="r1hbutW0T2uxmNdTlxRA-47" target="r1hbutW0T2uxmNdTlxRA-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="780" />
+              <mxPoint x="529" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-47" value="Odliczanie czasu poscigu zakonczylo sie nie znalezieniem gracza" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="280" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-50" value="Koniec gry" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="120" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-54" value="RoamState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="50" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-55" value="ChaseState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="50" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-56" value="HearState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="50" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1hbutW0T2uxmNdTlxRA-57" value="SearchState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="50" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="wuLEA9PCoVwsqI9mIn-u" name="Strona-3">
+    <mxGraphModel dx="2058" dy="1188" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-1" value="NoteObject: Interactable" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="560" y="20" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-2" value="ShowNote(string ID)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="660" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.4;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="kFdbJMtIGYUbj_jLPXNU-3" target="kFdbJMtIGYUbj_jLPXNU-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-3" value="AddNoteToList(string ID)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="470" y="270" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-4" value="private string noteID" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-5" value="Scriptable Object NoteData" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="kFdbJMtIGYUbj_jLPXNU-6" target="kFdbJMtIGYUbj_jLPXNU-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="555" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="kFdbJMtIGYUbj_jLPXNU-6" target="kFdbJMtIGYUbj_jLPXNU-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-6" value="Interact()" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="180" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-13" value="Note&amp;nbsp;&lt;br&gt;{&lt;br&gt;string ID&lt;br&gt;string Content&lt;br&gt;bool isActive&lt;br&gt;}" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="220" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-14" value="Journal" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="kFdbJMtIGYUbj_jLPXNU-15" target="kFdbJMtIGYUbj_jLPXNU-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-15" value="public NoteList&amp;lt;Note&amp;gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kFdbJMtIGYUbj_jLPXNU-21" value="Event OnNoteAdd(ID)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="315" y="120" width="150" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="M0cuz45PAHBy5uVCP8oS" name="Strona-4">
+    <mxGraphModel dx="2058" dy="1188" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

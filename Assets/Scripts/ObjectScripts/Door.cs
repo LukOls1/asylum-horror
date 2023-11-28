@@ -22,7 +22,7 @@ public class Door : MonoBehaviour, IInteractable
     private void Awake()
     {
         doorState = DoorState.Locked;
-        unlockOnState = GameManager.GameStates.Part2;
+        unlockOnState = GameManager.GameStates.Part6;
         GameManager.OnGameStateChange += EventFlowControll;
         animator = gameObject.GetComponent<Animator>();
     }

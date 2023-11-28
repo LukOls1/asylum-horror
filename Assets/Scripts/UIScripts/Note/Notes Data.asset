@@ -24,10 +24,35 @@ MonoBehaviour:
   - Id: Part4
     header: Door Keycode
     ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part4.txt
-    Content: 'CODE: 3827'
+    Content: 'CODE: 7637'
     ChangeStateOnThis: 3
-  - Id: Part5
-    header: Door Keycode
-    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part5.txt
-    Content: "To jest druga notatka zawieraj\u0105ca kod do drzwi kt\xF3ry jest nast\u0119puj\u0105cy: "
-    ChangeStateOnThis: 0
+  - Id: Part7
+    header: Experiment
+    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part7.txt
+    Content: "The experiment went very badly. All three subjects who were shown the
+      contents of the film died of suffocation. \r\nThey all complained of hallucinations
+      in which a woman appeared chasing them. Out of curiosity, I also wanted to
+      see what was on the tape, but after turning it on I lost consciousness...\r\nThe
+      recommended action in the event of the victim's death is to burn the body with
+      emotionaly attached object, otherwise the consequences may be tragic. \r\nI
+      feel like I don't have much time left, I'm starting to see things. Whoever
+      is reading this, the women's bodies are in the morgue, but you need to find
+      items to burn with them. \r\nMy item is always with me, so if something goes
+      wrong, you know what to do.\r\n\r\nSarah Hong - Teddy Bear\r\nLisa Fox - Gold
+      Mirror\r\nMeg Tompkins - Old book\r\n\r\nPlease help us... Dr. Philis"
+    ChangeStateOnThis: 6
+  - Id: MourgeList
+    header: Mourge List
+    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/MourgeList.txt
+    Content: "The experiment went very badly. All five subjects who were shown the
+      contents of the film died of suffocation. \r\nThey all complained of hallucinations
+      in which a woman appeared chasing them. Out of curiosity, I also wanted to
+      see what was on the tape, but after turning it on I lost consciousness...\r\nThe
+      recommended action in the event of the victim's death is to burn the body with
+      emotionaly attached object, otherwise the consequences may be tragic. \r\nI
+      feel like I don't have much time left, I'm starting to see things. Whoever
+      is reading this, the women's bodies are in the morgue, but you need to find
+      items to burn with them. \r\nMy item is always with me, so if something goes
+      wrong, you know what to do.\r\n\r\nSarah Hong - Teddy Bear\r\nLisa Fox - Gold
+      Mirror\r\nMeg Tompkins - Old book\r\n\r\nPlease help us... Dr. Philis"
+    ChangeStateOnThis: 6

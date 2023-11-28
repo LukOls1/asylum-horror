@@ -568,6 +568,11 @@ public class FirstPersonController : MonoBehaviour
             capsuleCollider.radius = originalColliderRadius;
         }
     }
+    public void ResetCameraRotation()
+    {
+        yaw = 0f;
+        pitch = 0f;
+    }
 }
 
 

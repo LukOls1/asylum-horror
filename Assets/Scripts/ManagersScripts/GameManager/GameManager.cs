@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,8 +55,9 @@ public class GameManager : MonoBehaviour
     #endregion
     #region Part7 Variables
     [Header("Part 7 Variables")]
-    [SerializeField] private Vector3 playerOnBedPosition;
-    [SerializeField] private Quaternion playerOnBedRotation;
+    [SerializeField] private PlayableDirector cutscene;
+    [SerializeField] private Vector3 endCutscenePosition;
+    [SerializeField] private Quaternion endCutsceneRotation;
     #endregion
 
     private void Awake()
@@ -150,17 +152,25 @@ public class GameManager : MonoBehaviour
     }
     private void PartSixMechanics()
     {
-        fade.FadeAndChangeState(GameStates.Part7);
         playerController.CameraCanMove = false;
         playerController.PlayerCanMove = false;
+        playerController.Crosshair = false;
+        playerTeleport.teleportTo = endCutscenePosition;
+        playerTeleport.rotateTo = endCutsceneRotation;
+        cutscene.Play();
     }
     private void PartSevenMechanics()
     {
-        playerTeleport.Teleport(playerOnBedPosition, playerOnBedRotation);
-        //playerAnimatorBehaviour.
-        //playerAnimator.enabled = true;
+ 
     }
 
+
+    public void CheckPointMechanics()
+    {
+        playerController.CameraCanMove = true;
+        playerController.PlayerCanMove = true;
+        playerController.Crosshair = true;
+    }
     private void PlayDialogue(AudioClip dialogue)
     {
         AudioManager.Instance.dialogueSource.Stop();

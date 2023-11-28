@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerTeleport : MonoBehaviour
 {
-    public void Teleport(Vector3 position, Quaternion rotation)
+    public Vector3 teleportTo;
+    public Quaternion rotateTo;
+    public void Teleport()
     {
-        transform.position = position;
-        transform.rotation = rotation;
+        transform.position = teleportTo;
+        transform.rotation = rotateTo;
     }
 }

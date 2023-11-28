@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickable : MonoBehaviour
+public class Pickable : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private string actionInfo = "TeddyBear";
+    public static event Action<GameObject> PickUpEvent;
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
+    {        
+        Destroy(gameObject);
+        PickUpEvent(gameObject);
+    }
+    public string ShowActionInfo()
     {
-        
+       return actionInfo;
     }
 }
