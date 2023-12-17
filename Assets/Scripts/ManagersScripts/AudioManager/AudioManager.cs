@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip dialogueThree;
     public AudioClip dialogueFour;
     public AudioClip dialogueFive;
+    public AudioClip dialogueAndGhost;
 
     [Header("Effects Clips")]
 

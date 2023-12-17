@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private FirstPersonController playerController;
+    [SerializeField] private GameObject ghost;
     [SerializeField] private PickingItems playerPickingItems;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private PlayerBehaviour playerAnimatorBehaviour;
@@ -55,8 +56,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Projector projector;
     #endregion
     #region Part6 Variables
+    [Header("Part6 Variables")]
     [SerializeField] private Vector3 endCutscenePosition;
     [SerializeField] private Quaternion endCutsceneRotation;
+    [SerializeField] private Door surgeryDoor;
     #endregion
     #region Part7 Variables
     [Header("Part 7 Variables")]
@@ -178,15 +181,14 @@ public class GameManager : MonoBehaviour
         playerController.Crosshair = false;
         playerTeleport.teleportTo = endCutscenePosition;
         playerTeleport.rotateTo = endCutsceneRotation;
+        surgeryDoor.doorState = Door.DoorState.Locked;
         cutscene.Play();
     }
     private void PartSevenMechanics()
     {
-        // dzwiêk ryku
-        // dialog what the fuck was that
-        // otwarcie drzwi
-        // spawn ghost
-        // informacja ¿e mo¿na chowaæ siê pod sto³ami i biurkami
+        surgeryDoor.doorState = Door.DoorState.Closed;
+        ghost.SetActive(true);
+        AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueAndGhost, 6);
     }
 
 
@@ -221,10 +223,10 @@ public class GameManager : MonoBehaviour
         ghostCamera.SetActive(false);
         cutscene.Play();
 
-        ghostTeleport.gameObject.SetActive(false);
+        ghost.SetActive(false);
         ghostTeleport.teleportTo = randomizeSpawnPoints.ReturnRandomPoint().position;
         ghostTeleport.TeleportCharacter();
         ghostStateMachine.ChangeState(ghostStateMachine.IdleState);
-        ghostTeleport.gameObject.SetActive(true);
+        ghost.SetActive(true);
     }
 }

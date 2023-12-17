@@ -55,24 +55,8 @@ public class PickingItems : MonoBehaviour
         activeItem = inHandItem;
         activeItem.SetActive(true);
     }
-    public GameObject UseItem(GameObject item)
+    public GameObject UseItem()
     {
-        if(activeItem == null)
-        {
-            Debug.Log("You don't have any item");
-            return null;
-        }
-        else if (!activeItem.name.Contains(item.name))
-        {
-            Debug.Log("The item doesn't match");
-            return null;
-        }
-        else
-        {
-            activeItem.SetActive(false);
-            activeItem = null;
-            Debug.Log("item fits");
-            return item;            
-        }
+        return activeItem;
     }
 }

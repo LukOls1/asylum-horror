@@ -12,7 +12,6 @@ public class InformationManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI informationText;
     
     [SerializeField] public List<string> TipsList;
-    private int tipIndex = 0;
 
     [TextArea(1, 10)]
     public string ControlsTip;
@@ -44,11 +43,5 @@ public class InformationManager : MonoBehaviour
     {
         informationText.text = TipsList[tipsListIndex];
         informationAnimator.SetTrigger("fadeActive");
-    }
-    public void ShowNextTip()
-    {
-        informationText.text = TipsList[tipIndex];
-        informationAnimator.SetTrigger("fadeActive");
-        tipIndex++;
     }
 }

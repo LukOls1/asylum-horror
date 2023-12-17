@@ -11,28 +11,29 @@ public class MourgeDoor : MonoBehaviour, IInteractable
     
     private int currentItemIndex = 0;
 
-    private void Start()
-    {
-        if(neededItems.Count <= 0)
-        {
-            throw new ArgumentException("The list of items is empty", nameof(neededItems));
-        }
-    }
     public void Interact()
-    {       
-        GameObject itemHolder = pickingItems.UseItem(neededItems[currentItemIndex]);
+    {
+        GameObject itemHolder = pickingItems.UseItem();
         if(itemHolder == null)
         {
-            return;
+            InformationManager.Instance.ShowTip(8);
         }
-        if (itemHolder.name.Contains(neededItems[currentItemIndex].name) && neededItems.Count > currentItemIndex)
-        {
-            currentItemIndex++;
+        else if (neededItems.Count > 0)
+        {          
+            if (itemHolder.name.Contains(neededItems[currentItemIndex].name) && neededItems.Count > currentItemIndex)
+            {
+                pickingItems.activeItem.SetActive(false);
+                pickingItems.activeItem = null;
+                InformationManager.Instance.ShowTip(11);
+                currentItemIndex++;
+            }
+            else InformationManager.Instance.ShowTip(9);
+            if (neededItems.Count == currentItemIndex)
+            {
+                InformationManager.Instance.ShowTip(10);
+            }
         }
-        if (neededItems.Count == currentItemIndex)
-        {
-            Debug.Log("Body burned");
-        }
+        else InformationManager.Instance.ShowTip(9);
     }
 
     public string ShowActionInfo()
