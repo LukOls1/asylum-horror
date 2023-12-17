@@ -9,6 +9,8 @@ public class FieldOfView : MonoBehaviour
 
     public Transform GhostHead;
     public GameObject Player;
+    public FirstPersonController playerController;
+    public bool playerSeenHiding = false;
 
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstructionMask;

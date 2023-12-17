@@ -29,6 +29,7 @@ public class GhostRoamState : GhostStateMachineBase
             InicializePointsList();
             hasInicialized = true;
         }
+        PlayGhostSound(AudioManager.Instance.ghostIdleSound);
         ghostNavMeshAgent.speed = ghostSpeed;
         destinationRoamPoint = ReturnRandomRoamPoint();
     }
@@ -66,5 +67,10 @@ public class GhostRoamState : GhostStateMachineBase
         } while (indexPoint == randomRoampointIndex);
         randomRoampointIndex = indexPoint;
         return roamPoints[randomRoampointIndex];
+    }
+    private void PlayGhostSound(AudioClip clip)
+    {
+        AudioManager.Instance.ghostSounds.Stop();
+        AudioManager.Instance.PlayLoopSound(AudioManager.Instance.ghostSounds, clip);
     }
 }

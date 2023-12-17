@@ -137,9 +137,10 @@ public class FirstPersonController : MonoBehaviour
     #region Hide
 
     public bool IsHidden = false;
-    private Vector3 lastPlayerPosition;
+    public Vector3 lastPlayerPosition;
     private float hiddenColliderRadius = 0.15f;
-    private float hiddenScale = 0.1f;
+    private float hiddenScaleBed = 0.1f;
+    private float hiddenScaleDesk = 0.35f;
 
     #endregion
 
@@ -470,8 +471,6 @@ public class FirstPersonController : MonoBehaviour
 
             IsCrouched = false;
         }
-        // Crouches Player down to set height
-        // Reduces WalkSpeed
         else
         {
             transform.localScale = new Vector3(originalScale.x, CrouchHeight, originalScale.z);
@@ -510,26 +509,29 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    public void Hide(Hideable hideable)
+    public void Hide(HidingField hideable)
     {
         if (!IsHidden)
         {
             rb.velocity = Vector3.zero;
             lastPlayerPosition = transform.position;
-            HidingSwitchPlayerAtributes();
+            HidingSwitchPlayerAtributes(hideable);
             HidingSwitchPlayerStates();
             HidingPositionAndRotation(hideable);       
         }
         else if (IsHidden)
         {
-            WalkSpeed = OriginalWalkSpeed;
-                        HidingSwitchPlayerAtributes();
+            HidingSwitchPlayerAtributes(hideable);
             HidingSwitchPlayerStates();
             UnHidePosition();
-           
+            if (IsCrouched)
+            {
+                WalkSpeed /= SpeedReduction;
+                IsCrouched = false;
+            }
         }
     }
-    private void HidingPositionAndRotation(Hideable hideable)
+    private void HidingPositionAndRotation(HidingField hideable)
     {
         pitch = 0f;
         PlayerCamera.transform.rotation = hideable.transform.rotation;
@@ -555,12 +557,19 @@ public class FirstPersonController : MonoBehaviour
             PlayerCanMove = true;
         }
     }
-    private void HidingSwitchPlayerAtributes()
+    private void HidingSwitchPlayerAtributes(HidingField hideable)
     {
         if(!IsHidden)
         {
-            transform.localScale = new Vector3(originalScale.x, hiddenScale, originalScale.z);
             capsuleCollider.radius = hiddenColliderRadius;
+            if (hideable.furnitureType == HidingField.FurnitureType.Bed)
+            {
+                transform.localScale = new Vector3(originalScale.x, hiddenScaleBed, originalScale.z);
+            }
+            else if(hideable.furnitureType == HidingField.FurnitureType.Desk)
+            {
+                transform.localScale = new Vector3(originalScale.x, hiddenScaleDesk, originalScale.z);
+            }
         }
         else if (IsHidden)
         {

@@ -704,7 +704,7 @@ Transform:
   - {fileID: 3452175556362117233}
   - {fileID: 3621338570166229198}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-537036071412575542
 MonoBehaviour:
@@ -766,4 +766,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2

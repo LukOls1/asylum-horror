@@ -16,6 +16,7 @@ public class KeypadNumber : MonoBehaviour,IInteractable
     public void Interact()
     {
         keypad.GetNumber(numberName);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.effectsSource, AudioManager.Instance.keypadButton);
     }
     public string ShowActionInfo()
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projector : MonoBehaviour, IInteractable
 {
     [SerializeField] private string actionInfo = "Play Tape";
-    [SerializeField] private Light projectorsLight;
+    //[SerializeField] private Light projectorsLight;
     [SerializeField] private GameManager.GameStates changeStateOn;
     public bool Interactable = false;
 
@@ -13,7 +13,7 @@ public class Projector : MonoBehaviour, IInteractable
     {
         if (Interactable)
         {
-            projectorsLight.gameObject.SetActive(true);
+            //projectorsLight.gameObject.SetActive(true);
             GameManager.Instance.UpdateGameState(changeStateOn);
             Interactable = false;
         }        

@@ -34,10 +34,12 @@ public class Keypad : MonoBehaviour
         if(typedCode == validCode)
         {
             controlledDoor.doorState = Door.DoorState.Closed;
+            AudioManager.Instance.PlaySound(AudioManager.Instance.effectsSource, AudioManager.Instance.correctCode);
         }
         else
         {
             typedCode = "";
+            AudioManager.Instance.PlaySound(AudioManager.Instance.effectsSource, AudioManager.Instance.wrongCode);
         }
     }
     private void PassCodeToNote(string code, string id, NoteData noteData)

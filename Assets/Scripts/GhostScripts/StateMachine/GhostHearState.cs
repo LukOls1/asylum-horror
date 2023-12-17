@@ -26,6 +26,7 @@ public class GhostHearState : GhostStateMachineBase
             fieldOfView = ghost.GetComponent<FieldOfView>();
             hasInicialized = true;
         }
+        PlayGhostSound(AudioManager.Instance.ghostAlertedSound);
         ghostNavMeshAgent.speed = ghostSpeed;
         soundDestination = hearRange.LastHearedSoundPosition;
     }
@@ -45,5 +46,10 @@ public class GhostHearState : GhostStateMachineBase
         {
             ghost.ChangeState(ghost.ChaseState);
         }
+    }
+    private void PlayGhostSound(AudioClip clip)
+    {
+        AudioManager.Instance.ghostSounds.Stop();
+        AudioManager.Instance.PlayLoopSound(AudioManager.Instance.ghostSounds, clip);
     }
 }

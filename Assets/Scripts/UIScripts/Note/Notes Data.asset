@@ -24,7 +24,7 @@ MonoBehaviour:
   - Id: Part4
     header: Door Keycode
     ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/Part4.txt
-    Content: 'CODE: 7637'
+    Content: 'CODE: 5661'
     ChangeStateOnThis: 3
   - Id: Part7
     header: Experiment
@@ -43,16 +43,31 @@ MonoBehaviour:
     ChangeStateOnThis: 6
   - Id: MourgeList
     header: Mourge List
-    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/MourgeList.txt
-    Content: "The experiment went very badly. All five subjects who were shown the
-      contents of the film died of suffocation. \r\nThey all complained of hallucinations
-      in which a woman appeared chasing them. Out of curiosity, I also wanted to
-      see what was on the tape, but after turning it on I lost consciousness...\r\nThe
-      recommended action in the event of the victim's death is to burn the body with
-      emotionaly attached object, otherwise the consequences may be tragic. \r\nI
-      feel like I don't have much time left, I'm starting to see things. Whoever
-      is reading this, the women's bodies are in the morgue, but you need to find
-      items to burn with them. \r\nMy item is always with me, so if something goes
-      wrong, you know what to do.\r\n\r\nSarah Hong - Teddy Bear\r\nLisa Fox - Gold
-      Mirror\r\nMeg Tompkins - Old book\r\n\r\nPlease help us... Dr. Philis"
+    ContentPath: Assets/Scripts/UIScripts/Note/NotesTXT/MorgueList.txt
+    Content: '1. Robie Smith
+
+      2. Sarah Hong
+
+      3. Fiona Bradley
+
+      4.
+      Anna Gallagher
+
+      5. Ashley Samoya
+
+      6. Meg Tompkins
+
+      7.
+      Selena Benton
+
+      8. Victoria Barley
+
+      9. Anna Black
+
+      10.
+      Angelica Leroy
+
+      11. Lisa Fox
+
+      12. -'
     ChangeStateOnThis: 6

@@ -10,6 +10,7 @@ public class GhostChaseState : GhostStateMachineBase
     private HearRange hearRange;
     private InteractRange interactRange;
     private Transform playerTransform;
+    private FirstPersonController playerController;
 
     private bool hasInicialized = false;
 
@@ -28,9 +29,11 @@ public class GhostChaseState : GhostStateMachineBase
             hearRange = ghost.GetComponent<HearRange>();
             interactRange = ghost.GetComponent<InteractRange>();
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            playerController = playerTransform.GetComponent<FirstPersonController>();
                        
             hasInicialized = true;
         }
+        PlayGhostSound(AudioManager.Instance.ghostChaseSound);
         ghostNavMeshAgent.speed = ghostSpeed;
     }
     public override void OnUpdate(GhostStateMachine ghost)
@@ -41,33 +44,45 @@ public class GhostChaseState : GhostStateMachineBase
         // Chase player when he is on sight
         if (fieldOfView.PlayerSeen && !interactRange.PlayerCought)
         {
-            Debug.Log("Chase player when he is on sight");
             ghostNavMeshAgent.destination = playerTransform.position;
         }
         // Kill player
         else if(fieldOfView.PlayerSeen && interactRange.PlayerCought)
         {
-            Debug.Log("Kill");
             ghostNavMeshAgent.destination = ghost.transform.position;
             ghost.ChangeState(ghost.GameOverState);
         }
-        // Going to last player position
-        else if(!fieldOfView.PlayerSeen && destinationDistance > sawDestinationDistance && !interactRange.PlayerCought)
+        //Seen when hiding 
+        else if (fieldOfView.playerSeenHiding)
         {
-            Debug.Log("Going to last player position");
+            fieldOfView.LastPlayerSeenPosition = playerController.lastPlayerPosition;
+            if(destinationDistance <= sawDestinationDistance)
+            {
+                ghostNavMeshAgent.destination = ghost.transform.position;
+                interactRange.killCamera.SetActive(true);
+                ghost.ChangeState(ghost.GameOverState);
+            }
+            
+        }
+        // Going to last player position
+        else if(!fieldOfView.PlayerSeen && destinationDistance > sawDestinationDistance && !interactRange.PlayerCought && !fieldOfView.playerSeenHiding)
+        {
             ghostNavMeshAgent.destination = fieldOfView.LastPlayerSeenPosition;
         }
         // Ghost lost player sight. Goes to last sound position
-        else if (destinationDistance <= sawDestinationDistance && hearRange.SoundHeard && !interactRange.PlayerCought)
+        else if (destinationDistance <= sawDestinationDistance && hearRange.SoundHeard && !interactRange.PlayerCought && !fieldOfView.playerSeenHiding)
         {
-            Debug.Log("Ghost lost player sight. Goes to last sound position");
             fieldOfView.LastPlayerSeenPosition = hearRange.LastHearedSoundPosition;
         }
         // Ghost lost all tracks
-        else if(destinationDistance <= sawDestinationDistance && !hearRange.SoundHeard && !interactRange.PlayerCought)
+        else if(destinationDistance <= sawDestinationDistance && !hearRange.SoundHeard && !interactRange.PlayerCought && !fieldOfView.playerSeenHiding)
         {
-            Debug.Log("Ghost lost player sight. Goes to last sound position");
             ghost.ChangeState(ghost.SearchState);
         } 
+    }
+    private void PlayGhostSound(AudioClip clip)
+    {
+        AudioManager.Instance.ghostSounds.Stop();
+        AudioManager.Instance.PlayLoopSound(AudioManager.Instance.ghostSounds, clip);
     }
 }

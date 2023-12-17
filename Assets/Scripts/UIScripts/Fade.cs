@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fade : MonoBehaviour
 {
     [SerializeField] private FadeBehaviour fadeBehaviour;
-    private Animator fadeAnimator;
+    public Animator fadeAnimator;
 
     private void Start()
     {

@@ -26,6 +26,7 @@ public class GhostSearchState : GhostStateMachineBase
         }
         ghostNavMeshAgent.speed = ghostSpeed;
         ghostAnimator.SetBool("idle", true);
+        ghostAnimator.SetBool("kill", false);
 
     }
     public override void OnUpdate(GhostStateMachine ghost)

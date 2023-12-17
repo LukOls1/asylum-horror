@@ -13,6 +13,7 @@ public class NoteObject: MonoBehaviour, IInteractable
     public void Interact()
     {
         PassID?.Invoke(noteID);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.effectsSource, AudioManager.Instance.paperSound);
         Destroy(gameObject);    
     }
     public string ShowActionInfo()

@@ -9,6 +9,7 @@ public class GhostStateMachine : MonoBehaviour
     public GhostSearchState SearchState = new GhostSearchState();
     public GhostChaseState ChaseState = new GhostChaseState();
     public GhostGameOverState GameOverState = new GhostGameOverState();
+    public GhostResetState IdleState = new GhostResetState();
 
     public GhostStateMachineBase CurrentState;
 

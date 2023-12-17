@@ -11,9 +11,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private FirstPersonController playerController;
+    [SerializeField] private PickingItems playerPickingItems;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private PlayerBehaviour playerAnimatorBehaviour;
-    [SerializeField] private PlayerTeleport playerTeleport;
+    [SerializeField] private Teleport playerTeleport;
     [SerializeField] private Fade fade;
 
     public GameStates ActualState;
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
         Part5,
         Part6,
         Part7,
+        Catched,
+        Revive,
         GameOver,
         IdleState
     }
@@ -52,12 +55,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Projector projector;
     #endregion
     #region Part6 Variables
+    [SerializeField] private Vector3 endCutscenePosition;
+    [SerializeField] private Quaternion endCutsceneRotation;
     #endregion
     #region Part7 Variables
     [Header("Part 7 Variables")]
     [SerializeField] private PlayableDirector cutscene;
-    [SerializeField] private Vector3 endCutscenePosition;
-    [SerializeField] private Quaternion endCutsceneRotation;
+
+    #endregion
+    #region Catched Variables
+    [Header("Catched Variables")]
+    [SerializeField] private float checkPointCutsceneTime = 10.5f;
+    [SerializeField] private GameObject ghostCamera;
+    #endregion
+    #region Revive Variables
+    [Header("Revive Variables")]
+    [SerializeField] Teleport ghostTeleport;
+    [SerializeField] GhostStateMachine ghostStateMachine;
+    [SerializeField] RandomizeSpawnPoints randomizeSpawnPoints;
     #endregion
 
     private void Awake()
@@ -72,7 +87,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        ActualState = GameStates.Part5;
+        //ActualState = GameStates.Part5;
     }
     private void Start()
     {
@@ -107,8 +122,11 @@ public class GameManager : MonoBehaviour
             case GameStates.Part7:
                 PartSevenMechanics();
                 break;
-            case GameStates.GameOver:
-                GameOverMechanics();
+            case GameStates.Catched:
+                CatchedMechanics();
+                break;
+            case GameStates.Revive:
+                ReviveMechanics();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
@@ -121,33 +139,36 @@ public class GameManager : MonoBehaviour
         //Zamkniêcie wszystkich drzwi, pozostawienie drzwi z kodem jako Locked
         dayRoomDoorLeft.doorState = Door.DoorState.Closed;
         dayRoomDoorRight.doorState = Door.DoorState.Closed;
-        PlayDialogue(AudioManager.Instance.dialogueOne);
+        AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueOne, 2);
+        InformationManager.Instance.ShowTip(1);
     }
     // Odnalezienie notatki z instrukcja odnalezienia kodu do drzwi z tasma
     private void PartTwoMechanics()
     {
         // ZnaleŸæ skrytke do notatki
-        
+
         //dayRoomDoorRight.doorState = Door.DoorState.Opened;
-        PlayDialogue(AudioManager.Instance.dialogueTwo);
+        AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueTwo, 0);
         partTwoTrigger.gameObject.SetActive(false);
     }
     // Odnalezienie tasmy, próba obejrzenia taœmy 
     private void PartThreeMechanics()
     {
-        PlayDialogue(AudioManager.Instance.dialogueThree);
+        AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueThree, 3);
         paintingScript.Interactable = true;
+        //InformationManager.Instance.ShowTip(InformationManager.Instance.FindCodeTip);
     }
     // Obudzenie siê w pokoju na stole operacyjnym, znalezienie notatki z zawartoœcia o eksperymencie z tasma
     // W notatce bedzie zawarta informacja o tym co zrobic w wypadku œmierci obiektu badanego 
     // Brakuj¹ce strony w raporcie o obiektach beda do odszukania po ca³ym obiekcie 
     private void PartFourMechanics()
     {
-        PlayDialogue(AudioManager.Instance.dialogueFour);
+        AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueFour, 4);
+        //InformationManager.Instance.ShowTip(InformationManager.Instance.FindOfficeTip);
     }
     private void PartFiveMechanics()
     {
-        PlayDialogue(AudioManager.Instance.dialogueFive);
+        AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueFive, 5);
         projector.Interactable = true;
     }
     private void PartSixMechanics()
@@ -161,7 +182,11 @@ public class GameManager : MonoBehaviour
     }
     private void PartSevenMechanics()
     {
- 
+        // dzwiêk ryku
+        // dialog what the fuck was that
+        // otwarcie drzwi
+        // spawn ghost
+        // informacja ¿e mo¿na chowaæ siê pod sto³ami i biurkami
     }
 
 
@@ -171,13 +196,35 @@ public class GameManager : MonoBehaviour
         playerController.PlayerCanMove = true;
         playerController.Crosshair = true;
     }
-    private void PlayDialogue(AudioClip dialogue)
+
+    private void CatchedMechanics()
     {
-        AudioManager.Instance.dialogueSource.Stop();
-        AudioManager.Instance.PlaySound(AudioManager.Instance.dialogueSource, dialogue);
+        playerController.CameraCanMove = false;
+        playerController.PlayerCanMove = false;
+        playerController.Crosshair = false;
+        //playerController.enabled = false;
+        //zrzucenie przedmiotu jesli jakis jest
+        if (playerPickingItems.activeItem != null)
+        {
+            playerPickingItems.LeaveItem();
+        }
+        //fade z napisem "you failed"
+        fade.FadeAndChangeState(GameStates.Revive);
     }
-    private void GameOverMechanics()
+    private void ReviveMechanics()
     {
-        playerController.enabled = false;
+        ActualState = GameStates.IdleState;
+        playerTeleport.teleportTo = endCutscenePosition;
+        playerTeleport.rotateTo = endCutsceneRotation;
+        playerTeleport.TeleportCharacter();
+        cutscene.time = checkPointCutsceneTime;
+        ghostCamera.SetActive(false);
+        cutscene.Play();
+
+        ghostTeleport.gameObject.SetActive(false);
+        ghostTeleport.teleportTo = randomizeSpawnPoints.ReturnRandomPoint().position;
+        ghostTeleport.TeleportCharacter();
+        ghostStateMachine.ChangeState(ghostStateMachine.IdleState);
+        ghostTeleport.gameObject.SetActive(true);
     }
 }

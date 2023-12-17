@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractRange : MonoBehaviour
 {
     public bool PlayerCought = false;
-    [SerializeField] GameObject killCamera;
+    public GameObject killCamera;
 
     private void OnTriggerEnter(Collider other)
     {        

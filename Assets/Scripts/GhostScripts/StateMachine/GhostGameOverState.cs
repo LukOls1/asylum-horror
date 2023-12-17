@@ -21,10 +21,11 @@ public class GhostGameOverState : GhostStateMachineBase
             hasInicialized = true;
         }
         ghostNavMeshAgent.speed = ghostSpeed;
+        GameManager.Instance.UpdateGameState(GameManager.GameStates.Catched);
+        ghostAnimator.SetBool("kill", true);
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {
-        GameManager.Instance.UpdateGameState(GameManager.GameStates.GameOver);
-        ghostAnimator.SetBool("kill", true);
+
     }
 }

@@ -11,7 +11,7 @@ public class PickingItems : MonoBehaviour
 
     [SerializeField] private List<GameObject> inHandItems;
     [SerializeField] private List<GameObject> inHandItemPrefabs;
-    private GameObject activeItem;
+    public GameObject activeItem;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class PickingItems : MonoBehaviour
             TakeItem(item);
         }
     }
-    private void LeaveItem()
+    public void LeaveItem()
     {
         GameObject item = inHandItemPrefabs.Find(obj => obj.name.Contains(activeItem.name));
         activeItem.SetActive(false);
