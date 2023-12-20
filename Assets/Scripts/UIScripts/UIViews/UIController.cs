@@ -25,9 +25,16 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(exit) && currentViewActive != null)
         {
-            currentViewActive.ControlView(currentViewActive);
-            currentViewActive = null;
-            LockScreen();
+            if(currentViewActive.backButton != null)
+            {
+                BackButton();
+            }
+            else
+            {
+                currentViewActive.ControlView(currentViewActive);
+                currentViewActive = null;
+                LockScreen();
+            }
         }
         else if (Input.GetKeyDown(pause))
         {
@@ -38,7 +45,7 @@ public class UIController : MonoBehaviour
             HandleView(journalView);
         }
     }
-    private void HandleView(UIView view)
+    public void HandleView(UIView view)
     {
         SetThisCurrent(view);
         view.ControlView(currentViewActive);
@@ -47,19 +54,30 @@ public class UIController : MonoBehaviour
     {
         if (currentViewActive != controlledView && currentViewActive != null)
         {
-            return;
+            if(controlledView is JournalView)
+            {
+                return;
+            }
+            else
+            {
+                currentViewActive = controlledView;
+            }
         }
-        else if( currentViewActive == null)
+        else if(currentViewActive == null)
         {
             LockScreen();
             currentViewActive = controlledView;
-        }
+        }       
         else
         {
             LockScreen();
             currentViewActive = null;
-        }
-           
+        }         
+    }
+    public void BackButton()
+    {
+        currentViewActive.ControlView(currentViewActive);
+        currentViewActive = currentViewActive.backButton.SetPreviousAsCurrent();
     }
     private void LockScreen()
     {

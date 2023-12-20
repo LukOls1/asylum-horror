@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+    [SerializeField] private Slider masterVolumeSlider;
 
     [Header("Player Audio Sources")]
 
@@ -51,6 +53,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        AudioListener.volume = masterVolumeSlider.value;
     }
 
     public void PlayDialogue(AudioClip clip, int tipsListIndex)

@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerBehaviour playerAnimatorBehaviour;
     [SerializeField] private Teleport playerTeleport;
     [SerializeField] private Fade fade;
+    [SerializeField] private EscapeDoor escapeDoor;
+    [SerializeField] private int bodiesToBurn = 3;
+    private int bodiesBurned;
+    
 
     public GameStates ActualState;
     public enum GameStates
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
         GameOver,
         IdleState
     }
+    
     #endregion
 
     #region Part1 Variables
@@ -95,6 +100,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UpdateGameState(ActualState);
+        bodiesBurned = 0;
+        MourgeDoor.BodyBurned += CheckObjectives;
     }
 
     public static event Action<GameStates> OnGameStateChange;
@@ -131,6 +138,9 @@ public class GameManager : MonoBehaviour
             case GameStates.Revive:
                 ReviveMechanics();
                 break;
+            case GameStates.GameOver:
+                GameOverMechanics();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
@@ -140,6 +150,7 @@ public class GameManager : MonoBehaviour
     private void PartOneMechanics()
     {
         //Zamkniêcie wszystkich drzwi, pozostawienie drzwi z kodem jako Locked
+        escapeDoor.enabled = false;
         dayRoomDoorLeft.doorState = Door.DoorState.Closed;
         dayRoomDoorRight.doorState = Door.DoorState.Closed;
         AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueOne, 2);
@@ -228,5 +239,18 @@ public class GameManager : MonoBehaviour
         ghostTeleport.TeleportCharacter();
         ghostStateMachine.ChangeState(ghostStateMachine.IdleState);
         ghost.SetActive(true);
+    }
+    private void GameOverMechanics()
+    {
+
+    }
+    private void CheckObjectives()
+    {
+        bodiesBurned++;
+        Debug.Log(bodiesBurned.ToString());
+        if(bodiesBurned == bodiesToBurn)
+        {
+            escapeDoor.enabled = true;
+        }
     }
 }

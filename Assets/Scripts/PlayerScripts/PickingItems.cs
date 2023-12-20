@@ -6,12 +6,14 @@ using UnityEngine;
 public class PickingItems : MonoBehaviour
 {
     [SerializeField] private KeyCode leaveItemKey;
+    [SerializeField] private Camera playerCamera;
     [SerializeField] private Transform prefabSpawn;
-    [SerializeField] private float pushForse = 5f;
+    [SerializeField] private float pushForse = 3f;
 
     [SerializeField] private List<GameObject> inHandItems;
     [SerializeField] private List<GameObject> inHandItemPrefabs;
     public GameObject activeItem;
+    private bool firstItemTaken = false;
 
     private void Start()
     {
@@ -40,8 +42,8 @@ public class PickingItems : MonoBehaviour
         GameObject item = inHandItemPrefabs.Find(obj => obj.name.Contains(activeItem.name));
         activeItem.SetActive(false);
         activeItem = null;
-        Instantiate(item, prefabSpawn.position, transform.rotation);
-        item.GetComponent<Rigidbody>().AddForce((transform.position - prefabSpawn.position).normalized * pushForse, ForceMode.Impulse);
+        GameObject spawnedItem = Instantiate(item, prefabSpawn.position, transform.rotation);
+        spawnedItem.GetComponent<Rigidbody>().AddForce((playerCamera.transform.forward).normalized * pushForse, ForceMode.Impulse);
 
     }
     private void SwitchItem(GameObject item)
@@ -51,6 +53,11 @@ public class PickingItems : MonoBehaviour
     }
     private void TakeItem(GameObject item)
     {
+        if (!firstItemTaken)
+        {
+            InformationManager.Instance.ShowTip(7);
+            firstItemTaken = true;
+        }
         GameObject inHandItem = inHandItems.Find(obj => item.name.Contains(obj.name));
         activeItem = inHandItem;
         activeItem.SetActive(true);

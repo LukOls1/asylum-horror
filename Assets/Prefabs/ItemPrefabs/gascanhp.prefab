@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -3537896225932320764}
   - component: {fileID: -3818202249081902495}
   - component: {fileID: 3034401613360938308}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: gascanhp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6327809966188211888}
   - {fileID: 8166690967446992066}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &-3537896225932320764
 Rigidbody:
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6327809966188211888}
   - component: {fileID: 8294390073863649389}
   - component: {fileID: 8220973732163950284}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: can_default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 8166690967446992066}
   - component: {fileID: 474501352846066813}
   - component: {fileID: 5794975014185798015}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: cap_default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,8 +9,18 @@ public class MourgeDoor : MonoBehaviour, IInteractable
     [SerializeField] private PickingItems pickingItems;
     [SerializeField] private List<GameObject> neededItems;
     
+    private ParticleSystem smokeParticle;
+    private Animator doorAnimator;
+
     private int currentItemIndex = 0;
 
+    public static event Action BodyBurned;
+
+    private void Start()
+    {
+        smokeParticle = transform.GetComponentInChildren<ParticleSystem>();
+        doorAnimator = transform.GetComponent<Animator>();
+    }
     public void Interact()
     {
         GameObject itemHolder = pickingItems.UseItem();
@@ -24,17 +34,21 @@ public class MourgeDoor : MonoBehaviour, IInteractable
             {
                 pickingItems.activeItem.SetActive(false);
                 pickingItems.activeItem = null;
+                doorAnimator.SetTrigger("open");
                 InformationManager.Instance.ShowTip(11);
                 currentItemIndex++;
             }
             else InformationManager.Instance.ShowTip(9);
             if (neededItems.Count == currentItemIndex)
             {
+                BodyBurned?.Invoke();
                 InformationManager.Instance.ShowTip(10);
+                smokeParticle.Play();
             }
         }
         else InformationManager.Instance.ShowTip(9);
     }
+
 
     public string ShowActionInfo()
     {
