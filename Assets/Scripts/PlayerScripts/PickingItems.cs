@@ -39,12 +39,16 @@ public class PickingItems : MonoBehaviour
     }
     public void LeaveItem()
     {
-        GameObject item = inHandItemPrefabs.Find(obj => obj.name.Contains(activeItem.name));
+        GameObject item = GetItemPrefab();
         activeItem.SetActive(false);
         activeItem = null;
         GameObject spawnedItem = Instantiate(item, prefabSpawn.position, transform.rotation);
-        spawnedItem.GetComponent<Rigidbody>().AddForce((playerCamera.transform.forward).normalized * pushForse, ForceMode.Impulse);
+        spawnedItem.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward.normalized * pushForse, ForceMode.Impulse);
 
+    }
+    public GameObject GetItemPrefab()
+    {
+        return inHandItemPrefabs.Find(obj => obj.name.Contains(activeItem.name));
     }
     private void SwitchItem(GameObject item)
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventSoundMaker : MonoBehaviour
 {
     public delegate void SoundMakerHandler(Transform objectTransform);
-    public event SoundMakerHandler SoundMakerTransform;
+    public static event SoundMakerHandler SoundMakerTransform;
 
     public void SendSoundMakerTransform(Transform objectTransform)
     {

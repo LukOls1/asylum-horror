@@ -44,5 +44,13 @@ public class Crosshair : MonoBehaviour
                 interactText.text = "";
             }
         }
+        else
+        {
+            interactText.text = "";
+        }
+    }
+    private void OnDisable()
+    {
+        interactText.text = "";
     }
 }

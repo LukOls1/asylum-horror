@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private FirstPersonController playerController;
+    [SerializeField] private Crosshair crosshair;
     [SerializeField] private GameObject ghost;
     [SerializeField] private PickingItems playerPickingItems;
     [SerializeField] private Animator playerAnimator;
@@ -215,11 +216,17 @@ public class GameManager : MonoBehaviour
         playerController.CameraCanMove = false;
         playerController.PlayerCanMove = false;
         playerController.Crosshair = false;
+        crosshair.enabled = false;
         //playerController.enabled = false;
         //zrzucenie przedmiotu jesli jakis jest
-        if (playerPickingItems.activeItem != null)
+        if(!playerController.IsHidden && playerPickingItems.activeItem != null)
         {
             playerPickingItems.LeaveItem();
+        }
+        if(playerController.IsHidden && playerPickingItems.activeItem != null)
+        {
+            GameObject inHandItem = playerPickingItems.GetItemPrefab();
+            GameObject spawnedItem = Instantiate(inHandItem, playerController.lastPlayerPosition, inHandItem.transform.rotation);
         }
         //fade z napisem "you failed"
         fade.FadeAndChangeState(GameStates.Revive);
@@ -227,6 +234,13 @@ public class GameManager : MonoBehaviour
     private void ReviveMechanics()
     {
         ActualState = GameStates.IdleState;
+        crosshair.enabled = true;
+        if (playerController.IsHidden)
+        {
+            playerController.OriginalPlayerAtributes();
+            playerController.ResetSpeedIfCrouched();
+            playerController.IsHidden = false;
+        }
         playerTeleport.teleportTo = endCutscenePosition;
         playerTeleport.rotateTo = endCutsceneRotation;
         playerTeleport.TeleportCharacter();

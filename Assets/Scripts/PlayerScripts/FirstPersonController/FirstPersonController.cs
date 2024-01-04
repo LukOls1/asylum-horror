@@ -18,6 +18,7 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
+    private PickingItems pickingItems;
 
     #region Camera Movement Variables
 
@@ -148,6 +149,7 @@ public class FirstPersonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        pickingItems = GetComponent<PickingItems>();
 
         CrosshairObject = GetComponentInChildren<Image>();
 
@@ -513,6 +515,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (!IsHidden)
         {
+            ItemSetActive();
             rb.velocity = Vector3.zero;
             lastPlayerPosition = transform.position;
             HidingSwitchPlayerAtributes(hideable);
@@ -521,14 +524,18 @@ public class FirstPersonController : MonoBehaviour
         }
         else if (IsHidden)
         {
+            ItemSetActive();
             HidingSwitchPlayerAtributes(hideable);
             HidingSwitchPlayerStates();
             UnHidePosition();
-            if (IsCrouched)
-            {
-                WalkSpeed /= SpeedReduction;
-                IsCrouched = false;
-            }
+            ResetSpeedIfCrouched();
+        }
+    }
+    private void ItemSetActive()
+    {
+        if (pickingItems.activeItem != null)
+        {
+            pickingItems.activeItem.SetActive(!pickingItems.activeItem.activeSelf);
         }
     }
     private void HidingPositionAndRotation(HidingField hideable)
@@ -573,9 +580,21 @@ public class FirstPersonController : MonoBehaviour
         }
         else if (IsHidden)
         {
-            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
-            capsuleCollider.radius = originalColliderRadius;
+            OriginalPlayerAtributes();
         }
+    }
+    public void ResetSpeedIfCrouched()
+    {
+        if (IsCrouched)
+        {
+            WalkSpeed /= SpeedReduction;
+            IsCrouched = false;
+        }
+    }
+    public void OriginalPlayerAtributes()
+    {
+        transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+        capsuleCollider.radius = originalColliderRadius;
     }
     public void ResetCameraRotation()
     {

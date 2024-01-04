@@ -13,11 +13,12 @@ public class HearRange : MonoBehaviour
 
     private void Start()
     {
-        EventSoundMaker[] soundMakers = FindObjectsOfType<EventSoundMaker>();
-        foreach (EventSoundMaker soundMaker in soundMakers)
-        {
-            soundMaker.SoundMakerTransform += CheckSoundInRange;
-        }
+        EventSoundMaker.SoundMakerTransform += CheckSoundInRange;
+        //EventSoundMaker[] soundMakers = FindObjectsOfType<EventSoundMaker>();
+        //foreach (EventSoundMaker soundMaker in soundMakers)
+        //{
+        //    soundMaker.SoundMakerTransform += CheckSoundInRange;
+        //}
     }
     private void Update()
     {

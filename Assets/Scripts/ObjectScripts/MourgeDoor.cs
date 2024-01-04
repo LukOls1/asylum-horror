@@ -44,6 +44,7 @@ public class MourgeDoor : MonoBehaviour, IInteractable
                 BodyBurned?.Invoke();
                 InformationManager.Instance.ShowTip(10);
                 smokeParticle.Play();
+                actionInfo = "Burned Cell";
             }
         }
         else InformationManager.Instance.ShowTip(9);

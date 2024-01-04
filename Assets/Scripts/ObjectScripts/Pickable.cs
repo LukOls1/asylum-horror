@@ -7,7 +7,12 @@ public class Pickable : MonoBehaviour, IInteractable
 {
     [SerializeField] private string actionInfo = "TeddyBear";
     public static event Action<GameObject> PickUpEvent;
+    private EventSoundMaker eventSoundMaker;
 
+    private void Awake()
+    {
+        eventSoundMaker = GetComponent<EventSoundMaker>();
+    }
     public void Interact()
     {        
         Destroy(gameObject);
@@ -16,5 +21,9 @@ public class Pickable : MonoBehaviour, IInteractable
     public string ShowActionInfo()
     {
        return actionInfo;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        eventSoundMaker.SendSoundMakerTransform(gameObject.transform);
     }
 }
