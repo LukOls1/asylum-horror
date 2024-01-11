@@ -20,8 +20,6 @@ public class HidingField : MonoBehaviour, IInteractable
     private void Start()
     {
         actionInfo = hideInfo;
-        //playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        //ghostFov = GameObject.FindGameObjectWithTag("Ghost").GetComponent<FieldOfView>();
     }
     public void Interact()
     {

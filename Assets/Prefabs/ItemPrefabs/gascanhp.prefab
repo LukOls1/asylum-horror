@@ -35,7 +35,7 @@ Transform:
   - {fileID: 6327809966188211888}
   - {fileID: 8166690967446992066}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &-3537896225932320764
 Rigidbody:
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionInfo: Gasoline
+  eventSoundMaker: {fileID: -8936956150827284345}
 --- !u!114 &-8936956150827284345
 MonoBehaviour:
   m_ObjectHideFlags: 0

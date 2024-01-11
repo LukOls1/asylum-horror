@@ -27,6 +27,7 @@ public class GhostHearState : GhostStateMachineBase
             hasInicialized = true;
         }
         PlayGhostSound(AudioManager.Instance.ghostAlertedSound);
+        AudioManager.Instance.musicSource.Play();
         ghostNavMeshAgent.speed = ghostSpeed;
         soundDestination = hearRange.LastHearedSoundPosition;
     }

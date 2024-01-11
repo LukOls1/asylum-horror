@@ -6,13 +6,16 @@ public class EscapeDoor : MonoBehaviour, IInteractable
 {
     [SerializeField] private string actionInfo = "Exit";
 
-    private void Start()
-    {
-        
-    }
     public void Interact()
     {
-        GameManager.Instance.UpdateGameState(GameManager.GameStates.GameOver);
+        if(GameManager.Instance.ObjectivesDone == false)
+        {
+            InformationManager.Instance.ShowTip(12);
+        }
+        else
+        {
+            GameManager.Instance.UpdateGameState(GameManager.GameStates.GameOver);
+        }
     }
     public string ShowActionInfo()
     {

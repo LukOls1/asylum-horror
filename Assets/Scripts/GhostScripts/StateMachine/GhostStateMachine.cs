@@ -27,5 +27,9 @@ public class GhostStateMachine : MonoBehaviour
     {
         CurrentState = state;
         CurrentState.OnEnter(this);
+        if(CurrentState == SearchState)
+        {
+            StartCoroutine(AudioManager.Instance.SoundFadeOut());
+        }
     }
 }

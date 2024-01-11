@@ -11,14 +11,13 @@ public class HearRange : MonoBehaviour
 
     private float soundResetDistance = 2f;
 
-    private void Start()
+    private void OnEnable()
     {
         EventSoundMaker.SoundMakerTransform += CheckSoundInRange;
-        //EventSoundMaker[] soundMakers = FindObjectsOfType<EventSoundMaker>();
-        //foreach (EventSoundMaker soundMaker in soundMakers)
-        //{
-        //    soundMaker.SoundMakerTransform += CheckSoundInRange;
-        //}
+    }
+    private void OnDisable()
+    {
+        EventSoundMaker.SoundMakerTransform -= CheckSoundInRange;
     }
     private void Update()
     {

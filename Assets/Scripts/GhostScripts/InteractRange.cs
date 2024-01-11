@@ -6,6 +6,7 @@ public class InteractRange : MonoBehaviour
 {
     public bool PlayerCought = false;
     public GameObject killCamera;
+    [SerializeField] private FirstPersonController playerController;
 
     private void OnTriggerEnter(Collider other)
     {        
@@ -15,8 +16,11 @@ public class InteractRange : MonoBehaviour
         }
         else if(other.CompareTag("Player"))
         {
-            PlayerCought = true;
-            killCamera.SetActive(true);
+            if (!playerController.IsHidden)
+            {
+                PlayerCought = true;
+                killCamera.SetActive(true);
+            }
         }
     }
 }

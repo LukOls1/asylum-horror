@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     [SerializeField] private Slider masterVolumeSlider;
+    [SerializeField] private float fadeDuration = 5f;
 
     [Header("Player Audio Sources")]
 
@@ -41,6 +42,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip correctCode;
     public AudioClip wrongCode;
 
+    [Header("Music Clips")]
+
+    public AudioClip alertMusic;
+    public AudioClip chaseMusic;
+
     public static event Action<int> EndOfClip;
     private void Awake()
     {
@@ -54,6 +60,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         AudioListener.volume = masterVolumeSlider.value;
+       // musicSource.clip = alertMusic;
     }
 
     public void PlayDialogue(AudioClip clip, int tipsListIndex)
@@ -72,6 +79,26 @@ public class AudioManager : MonoBehaviour
     {
         source.clip = clip;
         source.Play();
+    }
+    public IEnumerator SoundFadeOut()
+    {
+        if (musicSource.isPlaying)
+        {
+           // double lenght = (double)musicSource.clip.samples / musicSource.clip.frequency;
+           // yield return new WaitForSecondsRealtime((float)lenght - fadeDuration);
+
+            float time = 0;
+            float originalVolume = musicSource.volume;
+            while (time < fadeDuration)
+            {
+                time += Time.deltaTime;
+                musicSource.volume = Mathf.Lerp(originalVolume, 0, time / fadeDuration);
+                yield return null;
+            }
+            musicSource.Stop();
+            musicSource.volume = originalVolume;
+            yield break;
+        }
     }
     private IEnumerator TriggerOnEnd(AudioSource source, int tipsListIndex)
     {

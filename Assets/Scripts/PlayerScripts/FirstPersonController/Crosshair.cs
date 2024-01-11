@@ -20,7 +20,7 @@ public class Crosshair : MonoBehaviour
             Ray ray = PlayerCamera.ScreenPointToRay(screenCenter);
             RaycastHit hit;
             
-            if (Physics.Raycast(ray, out hit, rayMaxDistance) &&  hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
+            if (Physics.Raycast(ray, out hit, rayMaxDistance) &&  hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable) && !playerController.IsHidden)
             {
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red);
                 actualInteractable = interactable;

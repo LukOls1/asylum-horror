@@ -34,6 +34,10 @@ public class GhostChaseState : GhostStateMachineBase
             hasInicialized = true;
         }
         PlayGhostSound(AudioManager.Instance.ghostChaseSound);
+        if (!AudioManager.Instance.musicSource.isPlaying)
+        {
+            AudioManager.Instance.musicSource.Play();
+        }
         ghostNavMeshAgent.speed = ghostSpeed;
     }
     public override void OnUpdate(GhostStateMachine ghost)

@@ -13,6 +13,8 @@ public class GhostSearchState : GhostStateMachineBase
     private float elapsedTime;
     private int animationLength = 4;
     private float ghostSpeed = 0f;
+
+
     public override void OnEnter(GhostStateMachine ghost)
     {
         Debug.Log("search");
@@ -27,7 +29,6 @@ public class GhostSearchState : GhostStateMachineBase
         ghostNavMeshAgent.speed = ghostSpeed;
         ghostAnimator.SetBool("idle", true);
         ghostAnimator.SetBool("kill", false);
-
     }
     public override void OnUpdate(GhostStateMachine ghost)
     {

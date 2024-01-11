@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     #region Global Variables
     public static GameManager Instance;
 
+    [SerializeField] private bool objectivesDone = false;
+    public bool ObjectivesDone
+    {
+        get         { return objectivesDone; }
+        private set { objectivesDone = value; }
+    }
+
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private Crosshair crosshair;
     [SerializeField] private GameObject ghost;
@@ -83,6 +90,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GhostStateMachine ghostStateMachine;
     [SerializeField] RandomizeSpawnPoints randomizeSpawnPoints;
     #endregion
+    #region GameOver Variables
+    [Header("GameOver Variables")]
+    [SerializeField] private PlayableDirector cutscene2;
+    #endregion
 
     private void Awake()
     {
@@ -147,39 +158,27 @@ public class GameManager : MonoBehaviour
         }
         OnGameStateChange?.Invoke(state);
     }
-    // Poczatek gry, instrukcja dostania sie do pokoju z projektorem
     private void PartOneMechanics()
     {
-        //Zamkniêcie wszystkich drzwi, pozostawienie drzwi z kodem jako Locked
         escapeDoor.enabled = false;
         dayRoomDoorLeft.doorState = Door.DoorState.Closed;
         dayRoomDoorRight.doorState = Door.DoorState.Closed;
         AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueOne, 2);
         InformationManager.Instance.ShowTip(1);
     }
-    // Odnalezienie notatki z instrukcja odnalezienia kodu do drzwi z tasma
     private void PartTwoMechanics()
     {
-        // ZnaleŸæ skrytke do notatki
-
-        //dayRoomDoorRight.doorState = Door.DoorState.Opened;
         AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueTwo, 0);
         partTwoTrigger.gameObject.SetActive(false);
     }
-    // Odnalezienie tasmy, próba obejrzenia taœmy 
     private void PartThreeMechanics()
     {
         AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueThree, 3);
         paintingScript.Interactable = true;
-        //InformationManager.Instance.ShowTip(InformationManager.Instance.FindCodeTip);
     }
-    // Obudzenie siê w pokoju na stole operacyjnym, znalezienie notatki z zawartoœcia o eksperymencie z tasma
-    // W notatce bedzie zawarta informacja o tym co zrobic w wypadku œmierci obiektu badanego 
-    // Brakuj¹ce strony w raporcie o obiektach beda do odszukania po ca³ym obiekcie 
     private void PartFourMechanics()
     {
         AudioManager.Instance.PlayDialogue(AudioManager.Instance.dialogueFour, 4);
-        //InformationManager.Instance.ShowTip(InformationManager.Instance.FindOfficeTip);
     }
     private void PartFiveMechanics()
     {
@@ -217,8 +216,7 @@ public class GameManager : MonoBehaviour
         playerController.PlayerCanMove = false;
         playerController.Crosshair = false;
         crosshair.enabled = false;
-        //playerController.enabled = false;
-        //zrzucenie przedmiotu jesli jakis jest
+
         if(!playerController.IsHidden && playerPickingItems.activeItem != null)
         {
             playerPickingItems.LeaveItem();
@@ -228,7 +226,6 @@ public class GameManager : MonoBehaviour
             GameObject inHandItem = playerPickingItems.GetItemPrefab();
             GameObject spawnedItem = Instantiate(inHandItem, playerController.lastPlayerPosition, inHandItem.transform.rotation);
         }
-        //fade z napisem "you failed"
         fade.FadeAndChangeState(GameStates.Revive);
     }
     private void ReviveMechanics()
@@ -256,15 +253,19 @@ public class GameManager : MonoBehaviour
     }
     private void GameOverMechanics()
     {
-
+        playerController.CameraCanMove = false;
+        playerController.PlayerCanMove = false;
+        playerController.Crosshair = false;
+        crosshair.enabled = false;
+        cutscene2.Play();
     }
     private void CheckObjectives()
     {
         bodiesBurned++;
-        Debug.Log(bodiesBurned.ToString());
         if(bodiesBurned == bodiesToBurn)
         {
-            escapeDoor.enabled = true;
+            objectivesDone = true;
+            InformationManager.Instance.ShowTip(13);
         }
     }
 }
