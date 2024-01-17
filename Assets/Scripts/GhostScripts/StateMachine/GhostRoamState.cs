@@ -16,7 +16,7 @@ public class GhostRoamState : GhostStateMachineBase
     private float roamDestinationDistance = 1f;
     private bool hasInicialized = false;
 
-    private float ghostSpeed = 1.2f;
+    private float ghostSpeed = 2f;
     public override void OnEnter(GhostStateMachine ghost)
     {
         Debug.Log("roam");
